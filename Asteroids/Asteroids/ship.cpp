@@ -14,8 +14,8 @@ void Ship::turnRight()
 
 void Ship::thrust()
 {
-	velocity.setDx(velocity.getDx() + (-cos(R_ANGLE)));
-	velocity.setDy(velocity.getDy() + (-sin(R_ANGLE)));
+	velocity.setDx(velocity.getDx() + (cos(deg2rad(angle))));
+	velocity.setDy(velocity.getDy() + (sin(deg2rad(angle))));
 	return;
 }
 

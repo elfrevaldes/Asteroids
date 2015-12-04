@@ -7,7 +7,7 @@
 #define ROTATE_AMOUNT 6
 #define THRUST_AMOUNT 0.5
 
-#define R_ANGLE ((3.1415 / 180) * angle)
+#define deg2rad(value) ((3.1415 / 180) * (value))
 
 
 class Ship : public FlyingObject
