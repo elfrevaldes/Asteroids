@@ -16,6 +16,8 @@
 #include <time.h>     // for clock
 #include <cstdlib>    // for rand()
 
+// drawing 
+#define DELAY_WINDOWS 30
 
 #ifdef __APPLE__
 #include <openGL/gl.h>    // Main OpenGL library
@@ -55,7 +57,7 @@ void sleep(unsigned long msSleep)
 {
    // Windows handles sleep one way
 #ifdef _WIN32
-   ::Sleep(msSleep);
+   ::Sleep(msSleep + DELAY_WINDOWS);
 
    // Unix-based operating systems (OS-X, Linux) do it another
 #else // LINUX, XCODE

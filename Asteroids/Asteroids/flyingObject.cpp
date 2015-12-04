@@ -41,11 +41,11 @@ void FlyingObject::setVelocity(float nDx, float nDy)
 	velocity.setDy(nDy);
 }
 
-// Setter for the radius
-void FlyingObject::setRadius(int radius)
-{
-	this->radius = radius;
-}
+// Setter for the radius (they aren't using radius)
+//void FlyingObject::setRadius(int radius)
+//{
+//	this->radius = radius;
+//}
 
 // Checks to see if the object is within the screen bounds
 void FlyingObject::collide()

@@ -27,16 +27,18 @@ protected:
 	bool alive;
 	bool hit;
 	// Needs a radius for drawing asteroids and error checking
-	int radius;
+	// int radius; // don't need this because the proffesor gave size = radius
 	int size;
 
 	// Checks to see if the object is within the bounds of the screen
 	void collide();
 
 public:
+	// adding a basic constructor to take care of basic configuration
+	FlyingObject() : velocity(), alive(true), location(), hit(false), size(0) {}
 
 	void kill();
-	float getSize() const { return size; }
+	inline float getSize() const { return size; }
 
 	void advance();
 	bool isAlive() const { return alive; }
@@ -45,7 +47,7 @@ public:
 	Velocity getVelocity() const { return velocity; }
 
 	// Getter for the radius
-	int getRadius() const { return radius; }
+	// int getRadius() const { return radius; }
 
 	void setVelocity(float nDx, float nDy);
 	void setLocation(float nX, float nY) { location.setX(nX); location.setY(nY); }

@@ -6,17 +6,12 @@
 * Summary:
 *
 ************************************************************************/
-
-
 #ifndef VELOCITY_H
 #define VELOCITY_H
-
-#include <iostream>
-#include "point.h"
+#include <iostream> // for the overloading operators
 
 /*********************************************
 * Velocity
-*
 *********************************************/
 class Velocity
 {
@@ -32,34 +27,29 @@ public:
 	/**********************************************************************
 	* Constructors
 	**********************************************************************/
-	Velocity()
-	{
-		dx = 0;
-		dy = 0;
-	}
+	inline Velocity() : dx(0), dy(0) {}
 
-	Velocity(float nDx, float nDy)
-	{
-		dx = nDx;
-		dy = nDy;
-	}
+	inline Velocity(float nDx, float nDy) : dx(nDx), dy(nDy) {}
 
 	/**********************************************************************
 	* Getters
 	**********************************************************************/
-	float getDx() { return dx; }
-	float getDy() { return dy; }
+	inline float getDx() const { return dx; }
+	inline float getDy() const { return dy; }
 
 	/**********************************************************************
 	* Setters
 	**********************************************************************/
-	void setDx(float nDx) { dx = nDx; }
-	void setDy(float nDy) { dy = nDy; }
+	inline void setDx(float nDx) { dx = nDx; }
+	inline void setDy(float nDy) { dy = nDy; }
 
 	// Changed these to void b/c they don't need to return anything
-	void addOntoDx(float nDx) { dx += nDx; }
-	void addOntoDy(float nDy) { dy += nDy; }
+	inline void addOntoDx(float nDx) { dx += nDx; }
+	inline void addOntoDy(float nDy) { dy += nDy; }
 
 };
+
+std::ostream & operator << (std::ostream & out, const Velocity & vel);
+std::istream & operator >> (std::istream & in, Velocity & vel);
 
 #endif // VELOCITY_H

@@ -8,6 +8,7 @@
  *    of procedural functions here because each draw function does not
  *    retain state. In other words, they are verbs (functions), not nouns
  *    (variables) or a mixture (objects)
+ * Install-Package nupengl.core
  ************************************************************************/
 
 #include <string>     // need you ask?
@@ -295,7 +296,8 @@ void drawLanderFlames(const Point & point,
       int y;
    };
 
-   int iFlame = random(0, 3);  // so the flame flickers
+   // Had to change it because they change the random function
+   int iFlame = random(0, 2);  // so the flame flickers
    
    // draw it
    glBegin(GL_LINE_LOOP);
