@@ -49,8 +49,12 @@ public:
 	void addY(float dy) { setY(getY() + dy); }
 	void setCheck(bool f) { check = f; }
 	void setWrap(bool f) { wrap = f; }
-	const Point & operator = (const Point & rhs);
 
+	const Point & operator = (const Point & rhs);
+	const bool operator == (const Point & rhs);
+	const bool operator != (const Point & rhs);
+	const bool operator < (const Point & rhs);
+	const bool operator > (const Point & rhs);
 private:
 	float x;           // horizontal position
 	float y;           // vertical position

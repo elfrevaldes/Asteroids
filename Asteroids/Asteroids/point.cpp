@@ -79,7 +79,7 @@ void Point::setY(float y)
 /********************************************
 * POINT : Assignmenet
 *******************************************/
-const Point & Point :: operator = (const Point & rhs)
+const Point & Point::operator = (const Point & rhs)
 {
 	x = rhs.x;
 	y = rhs.y;
@@ -115,4 +115,35 @@ std::istream & operator >> (std::istream & in, Point & pt)
 
    return in;
 }
-   
+
+/*************************************************
+* POINT operator ==  (if the points are the same)
+**************************************************/
+const bool Point::operator == (const Point & rhs)
+{
+	return (this->x == rhs.x && this->y == rhs.y);
+}
+
+/*************************************************
+* POINT operator !=  (if the points are not the same)
+**************************************************/
+const bool Point::operator != (const Point & rhs)
+{
+	return !(*this == rhs);
+}
+
+/*************************************************
+* POINT operator <  (lhs < rhs)?
+**************************************************/
+const bool Point::operator < (const Point & rhs)
+{
+	return (this->x < rhs.x && this->y < rhs.y);
+}
+
+/*************************************************
+* POINT operator >  (lhs > rhs)?
+**************************************************/
+const bool Point::operator > (const Point & rhs)
+{
+	return (this->x > rhs.x && this->y > rhs.y);
+}
