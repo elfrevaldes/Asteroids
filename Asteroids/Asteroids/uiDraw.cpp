@@ -205,6 +205,7 @@ void drawPolygon(const Point & center, int radius, int points, int rotation)
 void rotate(Point & point, const Point & origin, int rotation)
 {
    // because sine and cosine are expensive, we want to call them only once
+	// the -90 was a fix so that the angle bahaves in the way we expect
    double cosA = cos(deg2rad(rotation - 90));
    double sinA = sin(deg2rad(rotation - 90));
 

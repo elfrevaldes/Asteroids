@@ -5,11 +5,15 @@
 void Ship::turnLeft()
 {
 	angle += ROTATE_AMOUNT;
+	if (angle > 360)
+		angle = angle % 360;
 }
 
 void Ship::turnRight()
 {
 	angle -= ROTATE_AMOUNT;
+	if (angle < 0)
+		angle += 360;
 }
 
 void Ship::thrust()

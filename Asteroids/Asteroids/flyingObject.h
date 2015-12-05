@@ -40,7 +40,7 @@ public:
 	void kill();
 	inline float getSize() const { return size; }
 
-	void advance();
+	void advance(); // all objects advance
 	bool isAlive() const { return alive; }
 
 	Point getLocation() const { return location; }
@@ -58,7 +58,7 @@ public:
 	void setLocation(Point location) { this->location = location; }
 	// Setter for the radius
 
-	void setRadius(int radius);
+	//void setRadius(int radius);
 
 	virtual void draw() = 0;
 };
