@@ -13,51 +13,26 @@
 #include "bullet.h"
 //#include "constants.h"
 
-Bullet::Bullet(Ship &)
+Bullet::Bullet(const Ship &s) : FlyingObject()
 {
+	alive = BULLET_LIFE;
+	Velocity initialVelicity(s.getAngle(), BULLET_SPEED);
+	// setting the velocity of the bullet to plus the speed of the ship
+	velocity = initialVelicity + s.getVelocity();
+	location = s.getLocation();
+	location.setWrap(true); // for testing purposes
 }
 
-/**********************************************************************
-*
-**********************************************************************/
-Bullet::Bullet(float angle, int gameLevel)
-{
-	//if (gameLevel == 1)
-	//{
-	//	//Point p(SCREEN_X_MAX, SCREEN_Y_MIN);/////////////////////
-	//	location = p;
-	//}
-	//else if (gameLevel == 2)
-	//{
-	//	//Point p(0, SCREEN_Y_MIN);////////////////////////////
-	//	location = p;
-	//}
-
-	alive = true;
-	shoot(angle);
-}
-
-/**********************************************************************
-*
-**********************************************************************/
-void Bullet::shoot(float shotAngle)
-{
-	velocity.setDy(10 * cos((3.14 * shotAngle) / 180.0));
-	velocity.setDx(-10 * sin((3.14 * shotAngle) / 180.0));
-
-	//advance();
-}
 
 /**********************************************************************
 *
 **********************************************************************/
 void Bullet::draw()
 {
-	drawDot(Point(location.getX(), location.getY()));
-	advance();
+	if (alive)
+		drawDot(Point(location.getX(), location.getY()));
+	if(alive > 0)
+	--alive;	
 }
 
-void Bullet::advance()
-{
-}
 

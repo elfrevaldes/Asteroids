@@ -29,7 +29,8 @@ public:
 	**********************************************************************/
 	inline Velocity() : dx(0), dy(0) {}
 
-	inline Velocity(float nDx, float nDy) : dx(nDx), dy(nDy) {}
+	Velocity(float angle, float speedIncrementor);
+	inline Velocity(const Velocity &vel) { *this = vel; }
 
 	/**********************************************************************
 	* Getters
@@ -38,7 +39,7 @@ public:
 	inline float getDy() const { return dy; }
 
 	/**********************************************************************
-	* Setters
+	* Setters (this setters need some checking)
 	**********************************************************************/
 	inline void setDx(float nDx) { dx = nDx; }
 	inline void setDy(float nDy) { dy = nDy; }
@@ -46,6 +47,10 @@ public:
 	// Changed these to void b/c they don't need to return anything
 	inline void addOntoDx(float nDx) { dx += nDx; }
 	inline void addOntoDy(float nDy) { dy += nDy; }
+
+	// overloading operator
+	Velocity & operator + (const Velocity & rhs);
+	Velocity & operator = (const Velocity & rhs);
 
 };
 

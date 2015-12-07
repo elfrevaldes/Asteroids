@@ -14,13 +14,17 @@
 
 using namespace std;
 
+// did the profesor add this because if he did not we need to get rid of this
 #define WINDOW_X_SIZE 200
 #define WINDOW_Y_SIZE 200
 
-float Point::xMax = 200;
-float Point::xMin = -200;
-float Point::yMax = 200;
-float Point::yMin = -200;
+// we need to figure how to do this
+//float Point::xMax = Game::getXMax();
+float Point::xMax =  WINDOW_X_SIZE;
+float Point::xMin = -WINDOW_X_SIZE;
+float Point::yMax =  WINDOW_Y_SIZE;
+float Point::yMin = -WINDOW_Y_SIZE;
+
 
 Point Game :: topLeft;
 Point Game :: bottomRight;
@@ -28,6 +32,7 @@ Point Game :: bottomRight;
 /***************************************
  * GAME :: getRandomPoint
  * Gets a random point within the boundaries of the world.
+ * WHY NOT TO CREATE A CONSTRUCTOR THAT does this?
  ***************************************/
 Point Game :: getRandomPoint() const
 {
@@ -89,11 +94,14 @@ void Game :: handleInput(const Interface & ui)
       {
          pShip->thrust();
       }
-      
+	  if (ui.isDown())
+	  {
+		  pShip->slowDown();
+	  }
       if (ui.isSpace())
       {
-         Bullet* pBullet = new Bullet(*pShip);
-         bullets.push_back(pBullet);
+         Bullet* pBullet = new Bullet(*pShip); // can this be done in one line?
+         bullets.push_back(pBullet); // push_back(&(new Bullet(*pShip)));
       }
    }
 }
@@ -104,7 +112,7 @@ void Game :: handleInput(const Interface & ui)
  *********************************************/
 void Game :: draw(const Interface & ui)
 {
-   pShip->draw();
+	pShip->draw();
    
    for (list<Bullet*>::iterator bulletIt = bullets.begin();
         bulletIt != bullets.end();
@@ -230,7 +238,7 @@ void Game::cleanUpZombies()
       {
          // first deallocate
          delete pBullet;
-         
+		 std::cout << "deleting bullet\n";
          // now remove from list and advance
          bulletIt = bullets.erase(bulletIt);
       }

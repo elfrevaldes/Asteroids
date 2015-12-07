@@ -15,13 +15,14 @@
 
 
 #define BULLET_SPEED 5
+// like a timer
 #define BULLET_LIFE 40
 
 
 class Bullet : public FlyingObject
 {
 private:
-	float angle;
+	float angle; // bullet has no angle
 
 
 public:
@@ -31,23 +32,11 @@ public:
 		Point p(200, -200);
 		location = p;
 	}
-
-	Bullet(Ship&);
-
-	Bullet(float, int);
-
-	float getAngle() { return angle; }
-
-	void setAngle(float nAngle) { angle = nAngle; }
-
-	void setLocation(Point nP) { location = nP; }
-
-	void shoot(float shotAngle);
-
-	bool setHit(bool nHit) { hit = nHit; }
+	// are we changing the ship?
+	Bullet(const Ship& s);
 
 	void draw();
-	void advance();
+	//void advance(); // defined in FlyingObject
 };
 
 #endif 

@@ -48,8 +48,9 @@ public:
       
       for (int i = 0; i < INITIAL_ASTEROID_COUNT; i++)
       {
-         Asteroid* pAsteroid = new LargeAsteroid(getRandomPoint());
-         asteroids.push_back(pAsteroid);
+		  ; // not pushing anything for now
+         //Asteroid* pAsteroid = new LargeAsteroid(getRandomPoint());
+         //asteroids.push_back(pAsteroid);
       }
    }
    

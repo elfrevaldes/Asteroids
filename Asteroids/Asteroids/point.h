@@ -34,11 +34,11 @@ public:
 	float getY()       const { return y; }
 	bool  getCheck()   const { return check; }
 	bool  isDead()     const { return dead; }
+	bool  getWrap()    const { return wrap; }
 	float getXMin()    const { return xMin; }
 	float getXMax()    const { return xMax; }
 	float getYMin()    const { return yMin; }
 	float getYMax()    const { return yMax; }
-	bool  getWrap()    const { return wrap; }
 
 
 
@@ -61,6 +61,8 @@ private:
 	bool  check;       // do bounds checking
 	bool  dead;        // have we exceed our bounds?
 	bool  wrap;        // do we wrap around the edge?
+	// having the point in the game makes the checking very anoying
+	// I do NOT want to do that
 	static float xMin; // minimum extent of the x position
 	static float xMax; // maximum extent of the x position
 	static float yMin; // minimum extent of the y position
