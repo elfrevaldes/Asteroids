@@ -21,6 +21,8 @@ public:
 	void turnRight();
 	void thrust();
 
+	int getAngle() { return angle; }
+
 	void draw();
 };
 

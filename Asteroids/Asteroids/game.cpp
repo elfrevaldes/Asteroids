@@ -49,10 +49,12 @@ void Game :: advance()
    pShip->advance();
    
    for (list<Bullet*>::iterator bulletIt = bullets.begin();
-        bulletIt != bullets.end();
-        bulletIt++)
+   bulletIt != bullets.end();
+	   bulletIt++)
    {
-      (*bulletIt)->advance();
+	   (*bulletIt)->killBullet();   ////temporary fix. I can't remember how to do template functions for kill() in flyingobject.
+	   (*bulletIt)->advanceBullet();
+	   
    }
    
    for (list<Asteroid*>::iterator asteroidIt = asteroids.begin();
@@ -85,7 +87,7 @@ void Game :: handleInput(const Interface & ui)
          pShip->turnRight();
       }
       
-      if (ui.isUp())
+      if (ui.isDown())
       {
          pShip->thrust();
       }

@@ -22,7 +22,7 @@ class Bullet : public FlyingObject
 {
 private:
 	float angle;
-
+	int life;
 
 public:
 
@@ -30,6 +30,7 @@ public:
 	{
 		Point p(200, -200);
 		location = p;
+		life = 40;
 	}
 
 	Bullet(Ship&);
@@ -46,8 +47,10 @@ public:
 
 	bool setHit(bool nHit) { hit = nHit; }
 
+	void killBullet();
+
 	void draw();
-	void advance();
+	void advanceBullet();
 };
 
 #endif 
