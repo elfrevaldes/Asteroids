@@ -13,14 +13,23 @@
 #include "bullet.h"
 //#include "constants.h"
 
-Bullet::Bullet(const Ship &s) : FlyingObject()
+Bullet::Bullet(const Ship &ship) : FlyingObject()
 {
 	alive = BULLET_LIFE;
-	Velocity initialVelicity(s.getAngle(), BULLET_SPEED);
-	// setting the velocity of the bullet to plus the speed of the ship
-	velocity = initialVelicity + s.getVelocity();
-	location = s.getLocation();
-	location.setWrap(true); // for testing purposes
+
+	//make an intial Velocity for the bullet based on the orientarion of the ship
+	Velocity initialVelicity(ship.getAngle(), BULLET_SPEED);
+	
+	// sets the Velocity of the bullet based on the relative velocity of the ship
+	velocity = initialVelicity + ship.getVelocity();
+
+	//puts the location of the bullet at the tip of the ship
+	float x = ship.getLocation().getX() + 10 * cos((ship.getAngle()* 3.14) / 180);
+	float y = ship.getLocation().getY() + 10 * sin((ship.getAngle()* 3.14) / 180);
+	location = Point(x, y);
+
+	//wraps the bullet     // for testing purposes
+	location.setWrap(true); 
 }
 
 
@@ -31,8 +40,12 @@ void Bullet::draw()
 {
 	if (alive)
 		drawDot(Point(location.getX(), location.getY()));
-	if(alive > 0)
-	--alive;	
+	if (alive > 0)
+	{
+		--alive;
+		std::cout << "bullet life: " << alive << std::endl;
+
+	}
 }
 
 

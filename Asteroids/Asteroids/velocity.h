@@ -29,7 +29,8 @@ public:
 	**********************************************************************/
 	inline Velocity() : dx(0), dy(0) {}
 
-	Velocity(float angle, float speedIncrementor);
+	Velocity(float x, float y) : dx(x), dy(y) {}
+	Velocity(int angle, int speedIncrementor);
 	inline Velocity(const Velocity &vel) { *this = vel; }
 
 	/**********************************************************************
@@ -43,6 +44,7 @@ public:
 	**********************************************************************/
 	inline void setDx(float nDx) { dx = nDx; }
 	inline void setDy(float nDy) { dy = nDy; }
+	
 
 	// Changed these to void b/c they don't need to return anything
 	inline void addOntoDx(float nDx) { dx += nDx; }

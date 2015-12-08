@@ -18,26 +18,27 @@ void Ship::turnRight()
 
 void Ship::thrust()
 {
-	float xS = ((cos(deg2rad(angle))) * THRUST_AMOUNT);
-	float yS = ((sin(deg2rad(angle))) * THRUST_AMOUNT);
-	velocity.setDx(velocity.getDx() + xS);
-	velocity.setDy(velocity.getDy() + yS);
+
+	float xShip = ((cos(deg2rad(angle))) * THRUST_AMOUNT);
+	float yShip = ((sin(deg2rad(angle))) * THRUST_AMOUNT);
+	velocity.setDx(velocity.getDx() + xShip);
+	velocity.setDy(velocity.getDy() + yShip);
 	return;
 }
 
 void Ship::slowDown()
 {
-	float xS = ((cos(deg2rad(angle))) * THRUST_AMOUNT);
-	float yS = ((sin(deg2rad(angle))) * THRUST_AMOUNT);
-	velocity.setDx(velocity.getDx() - xS);
-	velocity.setDy(velocity.getDy() - yS);
+	float xShip = ((cos(deg2rad(angle))) * THRUST_AMOUNT);
+	float yShip = ((sin(deg2rad(angle))) * THRUST_AMOUNT);
+	velocity.setDx(velocity.getDx() - xShip);
+	velocity.setDy(velocity.getDy() - yShip);
 	return;
 }
 
 void Ship::draw()
 {
 	if (alive)
-		drawShip(location, angle);
+		drawShip(location, angle, flames);
 }
 
 Ship & Ship::operator=(const Ship & rhs)

@@ -14,6 +14,7 @@
 #include "ship.h"
 
 
+
 #define BULLET_SPEED 5
 // like a timer
 #define BULLET_LIFE 40

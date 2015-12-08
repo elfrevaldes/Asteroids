@@ -9,6 +9,7 @@
  *********************************************************************/
 
 #include "game.h"
+//#include "configuration.h"
 #include <limits>
 #include <algorithm>
 
@@ -36,12 +37,19 @@ Point Game :: bottomRight;
  ***************************************/
 Point Game :: getRandomPoint() const
 {
-   int x = random(topLeft.getX(), bottomRight.getX());
-   int y = random(bottomRight.getY(), topLeft.getY());
-   
-   Point p(x, y);
-   
-   return p;
+	int x;
+	int y;
+
+	do
+	{
+		x = random(topLeft.getX(), bottomRight.getX());
+		y = random(bottomRight.getY(), topLeft.getY());
+	
+	} while (x < 50 && x > -50 && y < 50 && y > -50);
+
+	Point p(x, y);
+
+	return p;
 }
 
 
@@ -57,19 +65,17 @@ void Game :: advance()
    bulletIt != bullets.end();
 	   bulletIt++)
    {
-	   (*bulletIt)->killBullet();   ////temporary fix. I can't remember how to do template functions for kill() in flyingobject.
-	   (*bulletIt)->advanceBullet();
-	   
+	   (*bulletIt)->advance();  
    }
    
    for (list<Asteroid*>::iterator asteroidIt = asteroids.begin();
         asteroidIt != asteroids.end();
         asteroidIt++)
    {
-      (*asteroidIt)->advance();
+      (*asteroidIt)->FlyingObject::advance();
    }
    
-   checkForCollisions();
+   collisionCheck();
    cleanUpZombies();
 
 }
@@ -94,12 +100,20 @@ void Game :: handleInput(const Interface & ui)
       
       if (ui.isDown())
       {
+		 pShip->setFlames(true);
          pShip->thrust();
       }
-	  if (ui.isDown())
+	  else
+	  {
+		  pShip->setFlames(false);
+	  }
+
+	  if (ui.isUp())
 	  {
 		  pShip->slowDown();
 	  }
+
+
       if (ui.isSpace())
       {
          Bullet* pBullet = new Bullet(*pShip); // can this be done in one line?
@@ -132,10 +146,10 @@ void Game :: draw(const Interface & ui)
 }
 
 /*********************************************
- * GAME :: checkForCollisions
+ * GAME :: collisionCheck
  * Check for collisions between any two objects.
  *********************************************/
-void Game::checkForCollisions()
+void Game::collisionCheck()
 {
    // go through each Asteroid
    for (list<Asteroid*>::iterator asteroidIt = asteroids.begin();
@@ -145,6 +159,7 @@ void Game::checkForCollisions()
       // check for collision with the ship
       if (isCollision(*pShip, **asteroidIt))
       {
+		 std::cout << "ship hit by asteroid.\n";
          pShip->kill();
          (*asteroidIt)->kill();
          (*asteroidIt)->breakApart(asteroids);
@@ -158,6 +173,7 @@ void Game::checkForCollisions()
          // check for collision between this asteroid and this bullet
          if (isCollision(**bulletIt, **asteroidIt))
          {
+			std::cout << "Bullet hit an asteroid.\n";
             (*bulletIt)->kill();                     //add to flying object
             (*asteroidIt)->kill();
             (*asteroidIt)->breakApart(asteroids);
@@ -174,13 +190,13 @@ bool Game :: isCollision(const FlyingObject &obj1, const FlyingObject &obj2) con
 {
    bool collision = false;
    
-   // we only collide if we're both alive
+   // both objects need to be alive in order to check
    if (obj1.isAlive() && obj2.isAlive())
    {
-      float diff = getClosestDistance(obj1, obj2);
-      float tooClose = obj1.getSize() + obj2.getSize();  //add to flying object
+      float difference = getClosestDistance(obj1.getLocation(), obj2.getLocation());
+      float killDistance = obj1.getSize() + obj2.getSize();  //add to flying object
       
-      if (diff < tooClose)
+      if (difference < killDistance)
       {
          // we have a hit!
          collision = true;
@@ -190,39 +206,23 @@ bool Game :: isCollision(const FlyingObject &obj1, const FlyingObject &obj2) con
    return collision;
 }
 
+
+
 /**********************************************************
  * Function: getClosestDistance
  * Description: Determine how close these two objects will
  *   get in between the frames.
  **********************************************************/
-float Game :: getClosestDistance(const FlyingObject &obj1, const FlyingObject &obj2) const
+float Game::getClosestDistance(Point object1, Point object2) const
 {
-   // from Br. Helfrich:
-   // find the maximum distance traveled
-   float dMax = max(abs(obj1.getVelocity().getDx()), abs(obj1.getVelocity().getDy()));
-   dMax = max(dMax, abs(obj2.getVelocity().getDx()));
-   dMax = max(dMax, abs(obj2.getVelocity().getDy()));
-   dMax = max(dMax, 0.1f); // when dx and dy are 0.0. Go through the loop once.
-   
-   // we will advance by this number
-   float distMin = std::numeric_limits<float>::max();
-   for (float i = 0.0; i <= dMax; i++)
-   {
-      Point point1(obj1.getLocation().getX() + (obj1.getVelocity().getDx() * i / dMax),
-                     obj1.getLocation().getY() + (obj1.getVelocity().getDy() * i / dMax));
-      Point point2(obj2.getLocation().getX() + (obj2.getVelocity().getDx() * i / dMax),
-                     obj2.getLocation().getY() + (obj2.getVelocity().getDy() * i / dMax));
-      
-      float xDiff = point1.getX() - point2.getX();
-      float yDiff = point1.getY() - point2.getY();
-      
-      float distSquared = (xDiff * xDiff) +(yDiff * yDiff);
-      
-      distMin = min(distMin, distSquared);
-   }
-   
-   return sqrt(distMin);
+	// pathagorian theorm for the win
+	double distance =
+		sqrt(pow(object1.getX() - object2.getX(), 2) +
+			pow(object1.getY() - object2.getY(), 2));
+
+	return distance;
 }
+
 
 /*********************************************
  * GAME :: cleanUpZombies()
@@ -239,8 +239,11 @@ void Game::cleanUpZombies()
       if (!pBullet->isAlive())
       {
          // first deallocate
+		  std::cout << "bullet life: " << pBullet->isAlive() << std::endl;
+
          delete pBullet;
 		 std::cout << "deleting bullet\n";
+		 
          // now remove from list and advance
          bulletIt = bullets.erase(bulletIt);
       }

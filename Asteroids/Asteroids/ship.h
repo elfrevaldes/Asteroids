@@ -2,6 +2,7 @@
 #define ship_h
 
 #include "flyingObject.h"
+//#include "configuration.h"
 
 #define SHIP_SIZE 10
 #define ROTATE_AMOUNT 6
@@ -14,14 +15,17 @@ class Ship : public FlyingObject
 {
 private:
 	int angle;	
+	bool flames;
 public:
-	Ship() : FlyingObject() { angle = 90; size = SHIP_SIZE; location.setWrap(true); }
+	Ship() : FlyingObject() { angle = 90; size = SHIP_SIZE; location.setWrap(true); flames = false; }
 	inline int getAngle() const { return angle; }
 	void turnLeft();
 	void turnRight();
 	void thrust();
 	void slowDown();
 	void draw();
+
+	void setFlames(bool nFlames) { flames = nFlames;  }
 
 	Ship & operator = (const Ship &rhs);
 };
