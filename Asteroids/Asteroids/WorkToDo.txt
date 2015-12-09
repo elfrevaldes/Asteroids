@@ -1,0 +1,14 @@
+This file will have the assigned work to do for Logan and Conner
+Logan must update this file with the information of task to do and who is soppoused to be doing it
+(Assigned) = someone give that to someone else
+(in progress) = working on it
+(for review) = elfre please check it
+(completed) = elfre checked it and said it was good (if assigned again, you must go and read comments and work in it)
+
+Example
+
+Name: Logan 
+Progress: Assigned
+Level: Urgent
+Task: Create a configuration file to add all properties of the project. (config.h) 
+Comments: none for now.
