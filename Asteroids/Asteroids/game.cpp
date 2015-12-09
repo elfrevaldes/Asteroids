@@ -57,8 +57,8 @@ void Game :: advance()
    bulletIt != bullets.end();
 	   bulletIt++)
    {
-	   (*bulletIt)->killBullet();   ////temporary fix. I can't remember how to do template functions for kill() in flyingobject.
-	   (*bulletIt)->advanceBullet();
+	   //(*bulletIt)->killBullet();   ////temporary fix. I can't remember how to do template functions for kill() in flyingobject.
+	   (*bulletIt)->advance();
 	   
    }
    
