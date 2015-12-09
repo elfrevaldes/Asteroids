@@ -3,18 +3,19 @@
 
 #include <list>
 #include "flyingObject.h"
+//#include "configuration.h"
 
-#define BIG_ROCK_SIZE 16
-#define MEDIUM_ROCK_SIZE 8
-#define SMALL_ROCK_SIZE 4
+#define LARGE_ASTEROID_RADIUS 16
+#define MEDIUM_ASTEROID_RADIUS 8
+#define SMALL_ASTEROID_RADIUS 6  //I think 6 fit better than 4
 
-#define BIG_ROCK_SPIN 2
-#define MEDIUM_ROCK_SPIN 5
-#define SMALL_ROCK_SPIN 10
+#define LARGE_ASTEROID_SPIN 2
+#define MEDIUM_ASTEROID_SPIN 5
+#define SMALL_ASTEROID_SPIN 10
 
 
 /**********************************************************************
-*  CLASS SMALLASTROID
+*  CLASS ASTROID
 **********************************************************************/
 class Asteroid : public FlyingObject
 {
@@ -26,55 +27,50 @@ public:
 	Asteroid();
 
 	virtual void breakApart(std::list <Asteroid*> &asteroids) {}
-
-	virtual void advance();
-
 	virtual void draw();
 
-	int spinAmount();
-
+	Velocity getUnitVector();
+	Velocity getUnitVector(Velocity object1, Velocity object2);
 };
 
 /**********************************************************************
-*  CLASS SMALLASTROID
+*  CLASS SMALL ASTROID
 **********************************************************************/
 class SmallAsteroid : public Asteroid
 {
 private:
-
+	
 public:
 
-	SmallAsteroid()// : Asteroid(1)
+	SmallAsteroid(Point startPoint)
 	{
-	//	setHealth(1);
+		setAlive(1);
+		location = startPoint;
+		size = SMALL_ASTEROID_RADIUS;
 	}
 
-	void advance();
-	void breakApart(SmallAsteroid);
+	void breakApart();
 	void draw();
 };
 
 /**********************************************************************
-*  CLASS MEDIUMASTROID
+*  CLASS MEDIUM ASTROID
 **********************************************************************/
 class MediumAsteroid : public Asteroid
 {
 private:
 
-
 public:
 
-	MediumAsteroid()// : Asteroid(1)
+	MediumAsteroid(Point startPoint)// : Asteroid(1)
 	{
-		//setHealth(2);
+		setAlive(1);
+		location = startPoint;
+		size = MEDIUM_ASTEROID_RADIUS;
 	}
 
-	void advance();
-	void breakApart(SmallAsteroid);
+	void breakApart(std::list <Asteroid*> &asteroids);
 	void draw();
-
-
-
 };
 
 /**********************************************************************
@@ -86,15 +82,17 @@ private:
 
 public:
 
-	LargeAsteroid(Point)// : Asteroid(1)
+	LargeAsteroid(Point startPoint)
 	{
-		//setHealth(3);
+		setAlive(1);
+		location = startPoint;
+		size = LARGE_ASTEROID_RADIUS;
+		velocity = getUnitVector();
+		location.setWrap(true);
 	}
 
-	void advance();
-	void breakApart(MediumAsteroid);
+	void breakApart(std::list <Asteroid*> &asteroids);
 	void draw();
-
 };
 
 #endif

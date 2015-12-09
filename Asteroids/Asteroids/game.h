@@ -25,6 +25,7 @@
 #include "rocks.h"
 #include "bullet.h"
 
+
 #include <list>
 using namespace std;
 
@@ -48,9 +49,8 @@ public:
       
       for (int i = 0; i < INITIAL_ASTEROID_COUNT; i++)
       {
-		  ; // not pushing anything for now
-         //Asteroid* pAsteroid = new LargeAsteroid(getRandomPoint());
-         //asteroids.push_back(pAsteroid);
+         Asteroid* pAsteroid = new LargeAsteroid(getRandomPoint());
+         asteroids.push_back(pAsteroid);
       }
    }
    
@@ -78,11 +78,11 @@ private:
    list<Asteroid*> asteroids;
    
    Point getRandomPoint() const;
-   void checkForCollisions();
+   void collisionCheck();
    void cleanUpZombies();
    
    bool isCollision(const FlyingObject &obj1, const FlyingObject &obj2) const;
-   float getClosestDistance(const FlyingObject &obj1, const FlyingObject &obj2) const;
+   float getClosestDistance(Point, Point/*const FlyingObject &obj1, const FlyingObject &obj2*/) const;
    
 };
 

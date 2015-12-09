@@ -14,6 +14,8 @@
 
 #include <iostream>
 
+//#include "configuration.h"
+
  /*********************************************
  * POINT
  * A single position.

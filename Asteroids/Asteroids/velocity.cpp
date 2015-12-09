@@ -28,11 +28,13 @@ std::istream & operator >> (std::istream & in, Velocity & vel)
 * and the speed to initialize everything
 * (why to do it somewhere else?)
 ******************************************/
-Velocity::Velocity(float angle, float speedIncrementor)
+Velocity::Velocity(int angle, int speedIncrementor)
 {
 	setDx(speedIncrementor * cos((3.1415 * angle) / 180));
 	setDy(speedIncrementor * sin((3.1415 * angle) / 180));
 }
+
+
 
 Velocity & Velocity::operator+(const Velocity & rhs)
 {
