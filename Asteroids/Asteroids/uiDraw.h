@@ -8,6 +8,7 @@
  *    of procedural functions here because each draw function does not
  *    retain state. In other words, they are verbs (functions), not nouns
  *    (variables) or a mixture (objects)
+ * Install-Package nupengl.core
  ************************************************************************/
 
 #ifndef UI_DRAW_H
