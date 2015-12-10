@@ -14,21 +14,11 @@
 
 using namespace std;
 
-// did the profesor add this because if he did not we need to get rid of this
-#define WINDOW_X_SIZE 200
-#define WINDOW_Y_SIZE 200
-
 // I think I figured this thing out
 float Point::xMax = windowXMax;
 float Point::xMin = windowXMin;
 float Point::yMax = windowYMax;
 float Point::yMin = windowYMin;
-
-//float Point::xMax =  WINDOW_X_SIZE;
-//float Point::xMin = -WINDOW_X_SIZE;
-//float Point::yMax =  WINDOW_Y_SIZE;
-//float Point::yMin = -WINDOW_Y_SIZE;
-
 
 Point Game :: topLeft;
 Point Game :: bottomRight;

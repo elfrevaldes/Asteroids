@@ -3,16 +3,7 @@
 
 #include <list>
 #include "flyingObject.h"
-//#include "configuration.h"
-
-#define LARGE_ASTEROID_RADIUS 16
-#define MEDIUM_ASTEROID_RADIUS 8
-#define SMALL_ASTEROID_RADIUS 6  //I think 6 fit better than 4
-
-#define LARGE_ASTEROID_SPIN 2
-#define MEDIUM_ASTEROID_SPIN 5
-#define SMALL_ASTEROID_SPIN 10
-
+#include "configuration.h"
 
 /**********************************************************************
 *  CLASS ASTROID

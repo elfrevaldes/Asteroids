@@ -50,17 +50,19 @@ Comments:
 
 Assigned to:  CONNER
 Task: put all constants in this configureation file
-Progress: 
-Level:
-Comments:
+Progress: DONE
+Level: Simple
+Comments: I took all the existing constants and put them into that file
+			If there are more, just put them into that file when you make them.
 
 
 Assigned to:  CONNER
 Task: fix the breaking apart (medium asteroids are stopping)
-Progress: 
-Level:
-Comments:
-
+Progress: DONE
+Level: Good
+Comments: I just took my break apart methods for large and medium asteroids
+			and replaced your logic with mine. I hope that's what you wanted me
+			to do. 
 
 
 Assigned to:    LOGAN

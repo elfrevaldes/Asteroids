@@ -12,13 +12,7 @@
 #include "bullet.h"
 #include "uiDraw.h"
 #include "ship.h"
-
-
-
-#define BULLET_SPEED 5
-// like a timer
-#define BULLET_LIFE 40
-
+#include "configuration.h"
 
 class Bullet : public FlyingObject
 {

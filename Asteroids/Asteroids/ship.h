@@ -2,14 +2,7 @@
 #define ship_h
 
 #include "flyingObject.h"
-//#include "configuration.h"
-
-#define SHIP_SIZE 10
-#define ROTATE_AMOUNT 6
-#define THRUST_AMOUNT 0.5
-#define MAX_SHIP_SPEED 2.0
-#define deg2rad(value) ((3.1415 / 180) * (value))
-#define ABS(value) ((value > 0)? value : value * -1)
+#include "configuration.h"
 
 class Ship : public FlyingObject
 {
