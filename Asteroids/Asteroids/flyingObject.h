@@ -15,7 +15,7 @@
 #include "velocity.h"
 #include "point.h"
 #include "uiDraw.h"
-//#include "configuration.h"
+#include "configuration.h"
 
 /**********************************************************************
 *

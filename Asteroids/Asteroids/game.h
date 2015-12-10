@@ -24,12 +24,10 @@
 #include "ship.h"
 #include "rocks.h"
 #include "bullet.h"
-
+#include "configuration.h"
 
 #include <list>
 using namespace std;
-
-#define INITIAL_ASTEROID_COUNT 5
 
 
 /*****************************************
@@ -40,7 +38,7 @@ class Game
 {
 public:
    // create the game
-   Game(Point tl, Point br)
+	Game(Point tl, Point br) : level_timer(TIMER_RESET)
    {
       topLeft = tl;
       bottomRight = br;
@@ -62,6 +60,9 @@ public:
    
    // draw stuff
    void draw(const Interface & ui);
+
+   // Checks if all the asteroids are destroyed
+   void nextLevel();
    
    static int getXMin() { return topLeft.getX(); }
    static int getXMax() { return bottomRight.getX(); }
@@ -84,6 +85,8 @@ private:
    bool isCollision(const FlyingObject &obj1, const FlyingObject &obj2) const;
    float getClosestDistance(Point, Point/*const FlyingObject &obj1, const FlyingObject &obj2*/) const;
    
+   // For the few seconds before each new level begins
+   int level_timer;
 };
 
 

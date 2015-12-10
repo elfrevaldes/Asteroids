@@ -9,7 +9,6 @@
  *********************************************************************/
 
 #include "game.h"
-//#include "configuration.h"
 #include <limits>
 #include <algorithm>
 
@@ -19,12 +18,16 @@ using namespace std;
 #define WINDOW_X_SIZE 200
 #define WINDOW_Y_SIZE 200
 
-// we need to figure how to do this
-//float Point::xMax = Game::getXMax();
-float Point::xMax =  WINDOW_X_SIZE;
-float Point::xMin = -WINDOW_X_SIZE;
-float Point::yMax =  WINDOW_Y_SIZE;
-float Point::yMin = -WINDOW_Y_SIZE;
+// I think I figured this thing out
+float Point::xMax = windowXMax;
+float Point::xMin = windowXMin;
+float Point::yMax = windowYMax;
+float Point::yMin = windowYMin;
+
+//float Point::xMax =  WINDOW_X_SIZE;
+//float Point::xMin = -WINDOW_X_SIZE;
+//float Point::yMax =  WINDOW_Y_SIZE;
+//float Point::yMin = -WINDOW_Y_SIZE;
 
 
 Point Game :: topLeft;
@@ -72,11 +75,14 @@ void Game :: advance()
         asteroidIt != asteroids.end();
         asteroidIt++)
    {
-      (*asteroidIt)->FlyingObject::advance();
+      (*asteroidIt)->advance();
    }
    
    collisionCheck();
    cleanUpZombies();
+
+   // Just checks for next level
+   nextLevel();
 
 }
 
@@ -274,6 +280,26 @@ void Game::cleanUpZombies()
    }
 }
 
+void Game::nextLevel()
+{
+	// Checks to see if the list is empty
+	if (asteroids.empty())
+	{
+		level_timer--;
+
+		if (level_timer == 0)
+		{
+			level_timer = TIMER_RESET;
+
+			// Adds 5 new asteroids to the game
+			for (int i = 0; i < NEXT_LEVEL_ASTEROID_COUNT; i++)
+			{
+				Asteroid* pAsteroid = new LargeAsteroid(getRandomPoint());
+				asteroids.push_back(pAsteroid);
+			}
+		}
+	}
+}
 
 /*************************************
  * All the interesting work happens here, when
@@ -299,8 +325,8 @@ void callBack(const Interface *pUI, void *p)
  *********************************/
 int main(int argc, char ** argv)
 {
-   Point topLeft(-WINDOW_X_SIZE, WINDOW_Y_SIZE);
-   Point bottomRight(WINDOW_X_SIZE, -WINDOW_Y_SIZE);
+   Point topLeft(windowXMin, windowYMax);
+   Point bottomRight(windowXMax, windowYMin);
 
    Interface ui(argc, argv, "Asteroids", topLeft, bottomRight);
    Game game(topLeft, bottomRight);

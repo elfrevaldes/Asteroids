@@ -17,7 +17,7 @@ void SmallAsteroid::breakApart()
 **********************************************************************/
 void SmallAsteroid::draw()
 {
-	drawSmallAsteroid(location, 5);
+	drawSmallAsteroid(location, rotation);
 }
 
 /**********************************************************************
@@ -26,13 +26,21 @@ void SmallAsteroid::draw()
 **********************************************************************/
 void MediumAsteroid::breakApart(std::list <Asteroid*> &asteroid)
 {
-	Asteroid* asteroid1 = new SmallAsteroid(location);
-	asteroid1->setVelocity(velocity + Velocity((float)2.0, (float)0.0));
-	asteroid.push_back(asteroid1);
+	// First Small rock
+	Asteroid* pAsteroid1 = new SmallAsteroid(location);
+	Velocity smallAsteroid1Vel;
+	smallAsteroid1Vel.setDx(3);
+	smallAsteroid1Vel.setDy(0);
+	pAsteroid1->setVelocity(velocity + smallAsteroid1Vel); // for a rightward direction
+	asteroid.push_back(pAsteroid1);
 
-	Asteroid* asteroid2 = new SmallAsteroid(location);
-	asteroid2->setVelocity(velocity + Velocity((float)-2.0, (float)0.0));
-	asteroid.push_back(asteroid2);
+	// Second Small Asteroid
+	Asteroid* pAsteroid2 = new SmallAsteroid(location);
+	Velocity smallAsteroid2Vel;
+	smallAsteroid2Vel.setDx(-3);
+	smallAsteroid2Vel.setDy(0);
+	pAsteroid2->setVelocity(velocity + smallAsteroid2Vel); // for a leftward direction
+	asteroid.push_back(pAsteroid2);
 }
 
 /**********************************************************************
@@ -41,7 +49,7 @@ void MediumAsteroid::breakApart(std::list <Asteroid*> &asteroid)
 **********************************************************************/
 void MediumAsteroid::draw()
 {
-	drawMediumAsteroid(location, 5);
+	drawMediumAsteroid(location, rotation);
 }
 
 /**********************************************************************
@@ -49,21 +57,29 @@ void MediumAsteroid::draw()
 **********************************************************************/
 void LargeAsteroid::breakApart(std::list <Asteroid*> &asteroid)
 {
-	//pointer medium asteroid
-	Asteroid* asteroid1 = new MediumAsteroid(location);
-	//Velocity vel1(getUnitVector(velocity, Velocity((float)0.0, (float)-1)));
-	asteroid1->setVelocity(velocity + Velocity((float)0.0, (float)-1));
-	asteroid.push_back(asteroid1);
+	// First medium Asteroid
+	Asteroid* pAsteroid1 = new MediumAsteroid(location);
+	Velocity medAsteroid1Vel;
+	medAsteroid1Vel.setDx(0);
+	medAsteroid1Vel.setDy(1);
+	pAsteroid1->setVelocity(velocity + medAsteroid1Vel); // for an upward direction
+	asteroid.push_back(pAsteroid1);
 
-	Asteroid* asteroid2 = new MediumAsteroid(location);
-	//Velocity vel2(getUnitVector(velocity, Velocity((float)0.0, (float)1)));
-	asteroid2->setVelocity(velocity + Velocity((float)0.0, (float)1));
-	asteroid.push_back(asteroid2);
+	// Second medium Asteroid
+	Asteroid* pAsteroid2 = new MediumAsteroid(location);
+	Velocity medAsteroid2Vel;
+	medAsteroid2Vel.setDx(0);
+	medAsteroid2Vel.setDy(-1);
+	pAsteroid2->setVelocity(velocity + medAsteroid2Vel); // for a downward direction
+	asteroid.push_back(pAsteroid2);
 
-	Asteroid* asteroid3 = new SmallAsteroid(location);
-	//Velocity vel3(getUnitVector(velocity, Velocity((float)1, (float)0.0)));
-	asteroid3->setVelocity(velocity + Velocity((float)2, (float)0.0));
-	asteroid.push_back(asteroid3);
+	// Small Asteroid
+	Asteroid* pAsteroid3 = new SmallAsteroid(location);
+	Velocity smallAsteroid3Vel;
+	smallAsteroid3Vel.setDx(2);
+	smallAsteroid3Vel.setDy(0);
+	pAsteroid3->setVelocity(velocity + smallAsteroid3Vel); // for a rightward direction
+	asteroid.push_back(pAsteroid3);
 }
 
 /**********************************************************************
@@ -72,16 +88,41 @@ void LargeAsteroid::breakApart(std::list <Asteroid*> &asteroid)
 **********************************************************************/
 void LargeAsteroid::draw()
 {
-	drawLargeAsteroid(location, 5);
+	drawLargeAsteroid(location, rotation);
 }
 
 Asteroid::Asteroid()
 {
+	rotation = 0;
 }
 
 
 void Asteroid::draw()
 {
+}
+
+/********************************************************
+* ADVANCES FOR ROTATIONS
+*********************************************************/
+void LargeAsteroid::advance()
+{
+	FlyingObject::advance();
+
+	rotation += LARGE_ASTEROID_SPIN;
+}
+
+void MediumAsteroid::advance()
+{
+	FlyingObject::advance();
+
+	rotation += MEDIUM_ASTEROID_SPIN;
+}
+
+void SmallAsteroid::advance()
+{
+	FlyingObject::advance();
+
+	rotation += SMALL_ASTEROID_SPIN;
 }
 
 /**********************************************************************

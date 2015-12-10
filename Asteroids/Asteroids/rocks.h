@@ -20,6 +20,8 @@
 class Asteroid : public FlyingObject
 {
 protected:
+	int rotation;
+
 	int angle;
 
 public:
@@ -28,6 +30,7 @@ public:
 
 	virtual void breakApart(std::list <Asteroid*> &asteroids) {}
 	virtual void draw();
+	virtual void advance() {}
 
 	Velocity getUnitVector();
 	Velocity getUnitVector(Velocity object1, Velocity object2);
@@ -51,6 +54,7 @@ public:
 
 	void breakApart();
 	void draw();
+	void advance();
 };
 
 /**********************************************************************
@@ -71,6 +75,7 @@ public:
 
 	void breakApart(std::list <Asteroid*> &asteroids);
 	void draw();
+	void advance();
 };
 
 /**********************************************************************
@@ -93,6 +98,7 @@ public:
 
 	void breakApart(std::list <Asteroid*> &asteroids);
 	void draw();
+	void advance();
 };
 
 #endif

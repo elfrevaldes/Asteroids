@@ -14,7 +14,7 @@
 
 #include <iostream>
 
-//#include "configuration.h"
+#include "configuration.h"
 
  /*********************************************
  * POINT
