@@ -12,3 +12,170 @@ Progress: Assigned
 Level: Urgent
 Task: Create a configuration file to add all properties of the project. (config.h) 
 Comments: none for now.
+
+
+
+/*
+
+///////////////////////////////////////////////////////////////////////
+///  CLASSIC MODE
+///////////////////////////////////////////////////////////////////////
+
+Assigned to:  CONNER
+Task: Impliment multiple levels by having more asteroids spawn when you destroy all the asteroids
+Progress: 
+Level:
+Comments:
+
+Assigned to:    LOGAN
+Task: Assign score to asteroids and have it increment total score
+Progress: 
+Level:
+Comments:
+
+
+Assigned to:    ELFRE   :)
+Task: write the high score to a file
+Progress: 
+Level:
+Comments:
+
+
+Assigned to:  CONNER
+Task: put all constants in this configureation file
+Progress: 
+Level:
+Comments:
+
+
+Assigned to:  CONNER
+Task: fix the breaking apart (medium asteroids are stopping)
+Progress: 
+Level:
+Comments:
+
+
+
+Assigned to:    LOGAN
+Task: make the asteroids bounce off each other
+Progress: 
+Level:
+Comments:
+
+
+
+
+///////////////////////////////////////////////////////////////////////
+///  BONUS MODE
+///////////////////////////////////////////////////////////////////////
+
+
+Assigned to:  CONNER
+Task: Sonic Boom
+Progress: 
+Level:
+Comments:
+
+
+Assigned to:  CONNER
+Task: Delta team
+Progress: 
+Level:
+Comments:
+
+
+Assigned to:    LOGAN
+Task: Sheild
+Progress: 
+Level:
+Comments:
+
+Assigned to:  CONNER
+Task: Shotgun
+Progress: 
+Level:
+Comments:
+
+
+Assigned to:    LOGAN
+Task: Extra Life
+Progress: 
+Level:
+Comments:
+
+
+Assigned to:  CONNER
+Task: Asteroid tracking bullets
+Progress: 
+Level:
+Comments:
+
+
+
+///////////////////////////////////////////////////////////////////////
+///  SURVIVAL MODE
+///////////////////////////////////////////////////////////////////////
+
+Assigned to:    LOGAN
+Task: Asteroids track the ship
+Progress: 
+Level:
+Comments:
+
+
+
+
+///////////////////////////////////////////////////////////////////////
+///  Menu Class
+///////////////////////////////////////////////////////////////////////
+
+Assigned to:    LOGAN
+Task: start menu
+Progress: 
+Level:
+Comments:
+
+
+
+Assigned to:    LOGAN
+Task: prompt to play again
+Progress: 
+Level:
+Comments:
+
+
+
+Assigned to:    LOGAN
+Task: option to switch modes
+Progress: 
+Level:
+Comments:
+
+
+
+Assigned to:    LOGAN
+Task: Survival mode death message
+Progress: 
+Level:
+Comments:
+
+
+
+Assigned to:    LOGAN
+Task: classic mode death message
+Progress: 
+Level:
+Comments:
+
+
+
+Assigned to:    LOGAN
+Task: Bonus mode death message
+Progress: 
+Level:
+Comments:
+
+
+
+
+*/
