@@ -101,9 +101,13 @@ Comments:
 
 Assigned to:  CONNER
 Task: Shotgun
-Progress: 
-Level:
-Comments:
+Progress: in progress
+Level: Pretty annoying
+Comments: For some reason my bullet class and ship class were
+			freaking out and now it won't compile, saying that
+			the Bullet constructor can't convert Ship to a Bullet
+			and I don't understand why it's trying to do that. 
+			Also, it won't recognize the other files...?
 
 
 Assigned to:    LOGAN
