@@ -34,7 +34,7 @@ public:
 	inline Velocity(const Velocity &vel) { *this = vel; }
 
 	/**********************************************************************
-	* Getters
+	* Getters 
 	**********************************************************************/
 	inline float getDx() const { return dx; }
 	inline float getDy() const { return dy; }

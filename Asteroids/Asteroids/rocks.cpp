@@ -51,24 +51,24 @@ void LargeAsteroid::breakApart(std::list <Asteroid*> &asteroid)
 {
 	//pointer medium asteroid
 	Asteroid* asteroid1 = new MediumAsteroid(location);
-	Velocity vel1(getUnitVector(velocity, Velocity((float)0.0, (float)-1)));
-	asteroid1->setVelocity(vel1 + Velocity((float)0.0, (float)-1));
+	//Velocity vel1(getUnitVector(velocity, Velocity((float)0.0, (float)-1)));
+	asteroid1->setVelocity(velocity + Velocity((float)0.0, (float)-1));
 	asteroid.push_back(asteroid1);
 
 	Asteroid* asteroid2 = new MediumAsteroid(location);
-	Velocity vel2(getUnitVector(velocity, Velocity((float)0.0, (float)1)));
-	asteroid2->setVelocity(vel2 + Velocity((float)0.0, (float)1));
+	//Velocity vel2(getUnitVector(velocity, Velocity((float)0.0, (float)1)));
+	asteroid2->setVelocity(velocity + Velocity((float)0.0, (float)1));
 	asteroid.push_back(asteroid2);
 
 	Asteroid* asteroid3 = new SmallAsteroid(location);
-	Velocity vel3(getUnitVector(velocity, Velocity((float)1, (float)0.0)));
-	asteroid3->setVelocity(vel3 + Velocity((float).25, (float)0.0));
+	//Velocity vel3(getUnitVector(velocity, Velocity((float)1, (float)0.0)));
+	asteroid3->setVelocity(velocity + Velocity((float)2, (float)0.0));
 	asteroid.push_back(asteroid3);
 }
 
 /**********************************************************************
 * FUNCTION Draw 
-*	draws Large Asteroid
+*	draws Large Asteroid 
 **********************************************************************/
 void LargeAsteroid::draw()
 {
