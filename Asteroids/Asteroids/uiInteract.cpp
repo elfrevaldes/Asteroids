@@ -17,7 +17,7 @@
 #include <cstdlib>    // for rand()
 
 // drawing 
-#define DELAY_WINDOWS 30
+#define DELAY_WINDOWS 35
 
 #ifdef __APPLE__
 #include <openGL/gl.h>    // Main OpenGL library
@@ -178,6 +178,12 @@ void Interface::keyEvent(int key, bool fDown)
       case ' ':
          isSpacePress = fDown;
          break;
+	  case 'b':
+		  isBPress = fDown;
+		  break;
+	  case 'n':
+		  isNPress = fDown;
+		  break;
    }
 }
 /***************************************************************
@@ -197,6 +203,8 @@ void Interface::keyEvent()
    if (isRightPress)
       isRightPress++;
    isSpacePress = false;
+   isBPress = false;
+   isNPress = false;
 }
 
 
@@ -242,6 +250,8 @@ int          Interface::isUpPress    = 0;
 int          Interface::isLeftPress  = 0;
 int          Interface::isRightPress = 0;
 bool         Interface::isSpacePress = false;
+bool         Interface::isBPress     = false;
+bool         Interface::isNPress     = false;
 bool         Interface::initialized  = false;
 double       Interface::timePeriod   = 1.0 / 30; // default to 30 frames/second
 unsigned int Interface::nextTick     = 0;        // redraw now please
