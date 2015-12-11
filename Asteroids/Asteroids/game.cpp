@@ -125,6 +125,8 @@ void Game :: handleInput(const Interface & ui)
 void Game :: draw(const Interface & ui)
 {
 	pShip->draw();
+	drawText(Point(windowXMin + 5, windowYMax - 20), "score:");
+	drawNumber(Point(windowXMin + 45, windowYMax - 10), getScore());
    
    for (list<Bullet*>::iterator bulletIt = bullets.begin();
         bulletIt != bullets.end();
@@ -159,7 +161,15 @@ void Game::collisionCheck()
          pShip->kill();
          (*asteroidIt)->kill();
          (*asteroidIt)->breakApart(asteroids);
+		 
       }
+
+	  for (list<Asteroid*>::iterator asteroidIt2 = asteroids.begin();
+	  asteroidIt2 != asteroids.end();
+		  asteroidIt2++)
+	  {
+		  objectBounce(asteroidIt, asteroidIt2);
+	  }
       
       // go through each bullet
       for (list<Bullet*>::iterator bulletIt = bullets.begin();
@@ -173,6 +183,7 @@ void Game::collisionCheck()
             (*bulletIt)->kill();                     //add to flying object
             (*asteroidIt)->kill();
             (*asteroidIt)->breakApart(asteroids);
+			addToScore((*asteroidIt)->getReward());
          }
       }
    }
@@ -217,6 +228,26 @@ float Game::getClosestDistance(Point object1, Point object2) const
 			pow(object1.getY() - object2.getY(), 2));
 
 	return distance;
+}
+
+/*********************************************
+* GAME :: object bounce
+* gives the deflection of two objects that hit
+*********************************************/
+void Game::objectBounce(list<Asteroid*>::iterator asteroid1, list<Asteroid*>::iterator asteroid2)
+{
+	float distance = getClosestDistance((*asteroid1)->getLocation(), (*asteroid2)->getLocation());
+
+	/////////////////////////// ELFRE look here. This is whats giving me troubles
+	///////////////////////////   this is being called by Game::collisionCheck() line 171
+
+	//if (distance <  5 /*((*asteroid1)->getSize() + (*asteroid2)->getSize())*/)
+	//{
+	//	(*asteroid1)->getVelocity().invertVelocity();
+	//	(*asteroid2)->getVelocity().invertVelocity();
+
+	//	std::cout << "asteroid on asteroid collision\n";
+	//}
 }
 
 

@@ -44,6 +44,7 @@ public:
       bottomRight = br;
       
       pShip = new Ship;
+	  score = 0;
       
       for (int i = 0; i < INITIAL_ASTEROID_COUNT; i++)
       {
@@ -54,6 +55,10 @@ public:
    
    // handle user input
    void handleInput(const Interface & ui);
+
+   //handle score
+   int getScore() { return score; }
+   void addToScore(int scoreAdd) { score += scoreAdd; }
    
    // advance the game
    void advance();
@@ -84,9 +89,12 @@ private:
    
    bool isCollision(const FlyingObject &obj1, const FlyingObject &obj2) const;
    float getClosestDistance(Point, Point/*const FlyingObject &obj1, const FlyingObject &obj2*/) const;
+
+   void objectBounce(list<Asteroid*>::iterator asteroid1, list<Asteroid*>::iterator asteroid2);
    
    // For the few seconds before each new level begins
    int level_timer;
+   int score;
 };
 
 

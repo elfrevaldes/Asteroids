@@ -12,7 +12,7 @@ class Asteroid : public FlyingObject
 {
 protected:
 	int rotation;
-
+	int reward;
 	int angle;
 
 public:
@@ -22,6 +22,9 @@ public:
 	virtual void breakApart(std::list <Asteroid*> &asteroids) {}
 	virtual void draw();
 	virtual void advance() {}
+
+	int getReward() { return reward; }
+	
 
 	Velocity getUnitVector();
 	Velocity getUnitVector(Velocity object1, Velocity object2);
@@ -41,6 +44,7 @@ public:
 		setAlive(1);
 		location = startPoint;
 		size = SMALL_ASTEROID_RADIUS;
+		reward = 10;
 	}
 
 	void breakApart();
@@ -62,6 +66,7 @@ public:
 		setAlive(1);
 		location = startPoint;
 		size = MEDIUM_ASTEROID_RADIUS;
+		reward = 15;
 	}
 
 	void breakApart(std::list <Asteroid*> &asteroids);
@@ -85,6 +90,7 @@ public:
 		size = LARGE_ASTEROID_RADIUS;
 		velocity = getUnitVector();
 		location.setWrap(true);
+		reward = 20;
 	}
 
 	void breakApart(std::list <Asteroid*> &asteroids);

@@ -53,7 +53,7 @@ public:
 	void setLocation(Point location) { this->location = location; }
 	void setLocation(float nX, float nY) { location.setX(nX); location.setY(nY); }
 
-	virtual void draw() = 0;
+	virtual void draw() {}
 };
 
 #endif  //FLYINGOBJECT_H

@@ -44,6 +44,7 @@ public:
 	**********************************************************************/
 	inline void setDx(float nDx) { dx = nDx; }
 	inline void setDy(float nDy) { dy = nDy; }
+	inline void invertVelocity() { dx = -1 * dx; dy = -1 * dy; }
 	
 
 	// Changed these to void b/c they don't need to return anything

@@ -36,9 +36,9 @@ Comments: none, I tried to comment everything I did. :)
 
 Assigned to:    LOGAN
 Task: Assign score to asteroids and have it increment total score
-Progress: 
-Level:
-Comments:
+Progress: DONE
+Level:Easy
+Comments: very simple. added reward to asteroid class and a little to Game::draw();
 
 
 Assigned to:    ELFRE   :)
@@ -67,9 +67,12 @@ Comments: I just took my break apart methods for large and medium asteroids
 
 Assigned to:    LOGAN
 Task: make the asteroids bounce off each other
-Progress: 
-Level:
-Comments:
+Progress: dealing with bugs.
+Level: between meh and high
+Comments: Wrote an inbeded for loop with two iterators to go through each asteroid in Game::collisionCheck().
+			the problem is that the iterator will get to the same asteroid and then see that the distance is 
+			0 (becasue it's in the same place as itself).
+			How do I loop through to check all the distances and not check as asteroids distance with itself?
 
 
 
