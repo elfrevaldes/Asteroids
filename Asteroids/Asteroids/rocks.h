@@ -3,16 +3,7 @@
 
 #include <list>
 #include "flyingObject.h"
-//#include "configuration.h"
-
-#define LARGE_ASTEROID_RADIUS 16
-#define MEDIUM_ASTEROID_RADIUS 8
-#define SMALL_ASTEROID_RADIUS 6  //I think 6 fit better than 4
-
-#define LARGE_ASTEROID_SPIN 2
-#define MEDIUM_ASTEROID_SPIN 5
-#define SMALL_ASTEROID_SPIN 10
-
+#include "configuration.h"
 
 /**********************************************************************
 *  CLASS ASTROID
@@ -20,6 +11,8 @@
 class Asteroid : public FlyingObject
 {
 protected:
+	int rotation;
+
 	int angle;
 
 public:
@@ -28,6 +21,7 @@ public:
 
 	virtual void breakApart(std::list <Asteroid*> &asteroids) {}
 	virtual void draw();
+	virtual void advance() {}
 
 	Velocity getUnitVector();
 	Velocity getUnitVector(Velocity object1, Velocity object2);
@@ -51,6 +45,7 @@ public:
 
 	void breakApart();
 	void draw();
+	void advance();
 };
 
 /**********************************************************************
@@ -71,6 +66,7 @@ public:
 
 	void breakApart(std::list <Asteroid*> &asteroids);
 	void draw();
+	void advance();
 };
 
 /**********************************************************************
@@ -93,6 +89,7 @@ public:
 
 	void breakApart(std::list <Asteroid*> &asteroids);
 	void draw();
+	void advance();
 };
 
 #endif
