@@ -97,7 +97,7 @@ private:
    
    // For the few seconds before each new level begins
    static int level_timer;
-   int level_timer;
+   //int level_timer;
    int score;
 };
 
