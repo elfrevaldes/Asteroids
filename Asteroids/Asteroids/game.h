@@ -38,10 +38,12 @@ class Game
 {
 public:
    // create the game
-	Game(Point tl, Point br) : level_timer(TIMER_RESET)
+	Game(Point tl, Point br) 
    {
       topLeft = tl;
       bottomRight = br;
+	  nextLevelAsteroidCount = INITIAL_ASTEROID_COUNT;
+	  level_timer = TIMER_RESET;
       
       pShip = new Ship;
 	  score = 0;
@@ -55,7 +57,7 @@ public:
    
    // handle user input
    void handleInput(const Interface & ui);
-
+   
    //handle score
    int getScore() { return score; }
    void addToScore(int scoreAdd) { score += scoreAdd; }
@@ -77,6 +79,7 @@ public:
 private:
    static Point topLeft;
    static Point bottomRight;
+   static int nextLevelAsteroidCount;
    
    Ship* pShip;
    
@@ -89,10 +92,11 @@ private:
    
    bool isCollision(const FlyingObject &obj1, const FlyingObject &obj2) const;
    float getClosestDistance(Point, Point/*const FlyingObject &obj1, const FlyingObject &obj2*/) const;
-
+   
    void objectBounce(list<Asteroid*>::iterator asteroid1, list<Asteroid*>::iterator asteroid2);
    
    // For the few seconds before each new level begins
+   static int level_timer;
    int level_timer;
    int score;
 };
