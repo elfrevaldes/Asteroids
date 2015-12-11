@@ -83,6 +83,7 @@ private:
    
    bool isCollision(const FlyingObject &obj1, const FlyingObject &obj2) const;
    float getClosestDistance(Point, Point/*const FlyingObject &obj1, const FlyingObject &obj2*/) const;
+   void objectBounce(FlyingObject object1, FlyingObject object2);
    
 };
 

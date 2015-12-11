@@ -222,6 +222,22 @@ float Game::getClosestDistance(Point object1, Point object2) const
 
 	return distance;
 }
+/*********************************************
+* GAME :: object bounce
+* gives the deflection of two objects that hit
+*********************************************/
+ void Game::objectBounce(FlyingObject object1, FlyingObject object2)
+ {
+	 float distance = getClosestDistance(object1.getLocation(), object2.getLocation());
+
+	 if (distance < (object1.getSize() + object2.getSize()))
+	 {
+		 float xDifference = object1.getLocation().getX() - object2.getLocation().getX();
+		 float yDifference = object1.getLocation().getY() - object2.getLocation().getY();
+
+
+	 }
+ }
 
 
 /*********************************************
