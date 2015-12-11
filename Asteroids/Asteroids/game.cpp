@@ -22,6 +22,8 @@ float Point::yMin = windowYMin;
 
 Point Game :: topLeft;
 Point Game :: bottomRight;
+int Game::nextLevelAsteroidCount;
+int Game::level_timer;
 
 /***************************************
  * GAME :: getRandomPoint
@@ -280,9 +282,10 @@ void Game::nextLevel()
 		if (level_timer == 0)
 		{
 			level_timer = TIMER_RESET;
+			nextLevelAsteroidCount++;
 
 			// Adds 5 new asteroids to the game
-			for (int i = 0; i < NEXT_LEVEL_ASTEROID_COUNT; i++)
+			for (int i = 0; i < nextLevelAsteroidCount; i++)
 			{
 				Asteroid* pAsteroid = new LargeAsteroid(getRandomPoint());
 				asteroids.push_back(pAsteroid);

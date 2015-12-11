@@ -38,11 +38,13 @@ class Game
 {
 public:
    // create the game
-	Game(Point tl, Point br) : level_timer(TIMER_RESET)
+	Game(Point tl, Point br) 
    {
       topLeft = tl;
       bottomRight = br;
-      
+	  nextLevelAsteroidCount = INITIAL_ASTEROID_COUNT;
+	  level_timer = TIMER_RESET;
+
       pShip = new Ship;
       
       for (int i = 0; i < INITIAL_ASTEROID_COUNT; i++)
@@ -72,6 +74,7 @@ public:
 private:
    static Point topLeft;
    static Point bottomRight;
+   static int nextLevelAsteroidCount;
    
    Ship* pShip;
    
@@ -86,7 +89,7 @@ private:
    float getClosestDistance(Point, Point/*const FlyingObject &obj1, const FlyingObject &obj2*/) const;
    
    // For the few seconds before each new level begins
-   int level_timer;
+   static int level_timer;
 };
 
 

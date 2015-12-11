@@ -192,3 +192,52 @@ Comments:
 
 
 */
+
+
+//********************************CONNER'S SCREW UP STUFF
+ship.h
+	void shotgun(std::list<Bullet*> &bullets, Ship* &pShip);
+
+ship.cpp
+
+void Ship::shotgun(std::list<Bullet*> &bullets, Ship* &pShip)
+{
+	for (int i = SHOTGUN_LEFT_LIMIT; i < SHOTGUN_RIGHT_LIMIT; i++)
+	{
+		Bullet* pBullet = new Bullet(*pShip, i);
+		bullets.push_back(pBullet);
+	}
+}
+
+bullet.h
+
+// For shotgun
+	Bullet(Ship& ship, int orentation);
+
+bullet.cpp
+
+Bullet::Bullet(Ship &ship, int orientation)
+{
+	setLocation(ship.getLocation());
+	setAlive(true);
+	alive = BULLET_LIFE;
+	setVelocity(ship.getVelocity());
+
+	//make an intial Velocity for the bullet based on the orientarion of the ship
+	Velocity initialVelicity(ship.getAngle(), BULLET_SPEED);
+
+	// sets the Velocity of the bullet based on the relative velocity of the ship
+	velocity = initialVelicity + ship.getVelocity();
+
+	//puts the location of the bullet at the tip of the ship
+	float x = ship.getLocation().getX() + 10 * cos((ship.getAngle()* 3.14) / 180);
+	float y = ship.getLocation().getY() + 10 * sin((ship.getAngle()* 3.14) / 180);
+	location = Point(x, y);
+
+	//wraps the bullet     // for testing purposes
+	location.setWrap(true);
+}
+
+game.cpp
+		  pShip->shotgun(bullets, pShip);
+
