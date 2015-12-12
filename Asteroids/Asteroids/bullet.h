@@ -30,6 +30,9 @@ public:
 	// are we changing the ship?
 	Bullet(const Ship& s);
 
+	// For shotgun
+	Bullet(Ship& ship, int orentation);
+
 	virtual void draw();
 	//void advance(); // defined in FlyingObject
 };

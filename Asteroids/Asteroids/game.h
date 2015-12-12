@@ -70,6 +70,9 @@ public:
 
    // Checks if all the asteroids are destroyed
    void nextLevel();
+
+   // Shotgun has to be in game due to that weird problem
+   void shotgun();
    
    static int getXMin() { return topLeft.getX(); }
    static int getXMax() { return bottomRight.getX(); }

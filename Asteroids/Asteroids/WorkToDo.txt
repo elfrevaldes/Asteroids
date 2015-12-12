@@ -107,13 +107,14 @@ Comments:
 
 Assigned to:  CONNER
 Task: Shotgun
-Progress: in progress
-Level: Pretty annoying
-Comments: For some reason my bullet class and ship class were
-			freaking out and now it won't compile, saying that
-			the Bullet constructor can't convert Ship to a Bullet
-			and I don't understand why it's trying to do that. 
-			Also, it won't recognize the other files...?
+Progress: DONE
+Level: Hard
+Comments: I just put shotgun into the game class (that's the only
+			way it would work) and it works pretty well. It kind
+			of slows down the game, should I try and change it to
+			be one giant line that moves through or just keep in and
+			put the limit of shotguns so that the user can't constantly
+			slow down the game?
 
 
 Assigned to:    LOGAN
@@ -124,7 +125,7 @@ Comments:
 
 
 Assigned to:  CONNER
-Task: Asteroid tracking bullets
+Task: Bullet tracking asteroid
 Progress: 
 Level:
 Comments:
@@ -198,52 +199,3 @@ Comments:
 
 
 */
-
-
-//********************************CONNER'S SCREW UP STUFF
-ship.h
-	void shotgun(std::list<Bullet*> &bullets, Ship* &pShip);
-
-ship.cpp
-
-void Ship::shotgun(std::list<Bullet*> &bullets, Ship* &pShip)
-{
-	for (int i = SHOTGUN_LEFT_LIMIT; i < SHOTGUN_RIGHT_LIMIT; i++)
-	{
-		Bullet* pBullet = new Bullet(*pShip, i);
-		bullets.push_back(pBullet);
-	}
-}
-
-bullet.h
-
-// For shotgun
-	Bullet(Ship& ship, int orentation);
-
-bullet.cpp
-
-Bullet::Bullet(Ship &ship, int orientation)
-{
-	setLocation(ship.getLocation());
-	setAlive(true);
-	alive = BULLET_LIFE;
-	setVelocity(ship.getVelocity());
-
-	//make an intial Velocity for the bullet based on the orientarion of the ship
-	Velocity initialVelicity(ship.getAngle(), BULLET_SPEED);
-
-	// sets the Velocity of the bullet based on the relative velocity of the ship
-	velocity = initialVelicity + ship.getVelocity();
-
-	//puts the location of the bullet at the tip of the ship
-	float x = ship.getLocation().getX() + 10 * cos((ship.getAngle()* 3.14) / 180);
-	float y = ship.getLocation().getY() + 10 * sin((ship.getAngle()* 3.14) / 180);
-	location = Point(x, y);
-
-	//wraps the bullet     // for testing purposes
-	location.setWrap(true);
-}
-
-game.cpp
-		  pShip->shotgun(bullets, pShip);
-

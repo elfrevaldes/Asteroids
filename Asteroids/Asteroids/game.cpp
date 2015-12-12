@@ -123,6 +123,11 @@ void Game :: handleInput(const Interface & ui)
 		  Bullet* pBullet = new SonicBoom(*pShip); 
 		  bullets.push_back(pBullet); 
 	  }
+
+	  if (ui.isN())
+	  {
+		  shotgun();
+	  }
    }
 }
 
@@ -335,6 +340,17 @@ void Game::nextLevel()
 				asteroids.push_back(pAsteroid);
 			}
 		}
+	}
+}
+
+// Maybe make this just a line that goes, right now it slows
+// down the game after pressing it three times.
+void Game::shotgun()
+{
+	for (int i = SHOTGUN_LEFT_LIMIT; i < SHOTGUN_RIGHT_LIMIT; i++)
+	{
+		Bullet* pBullet = new Bullet(*pShip, i);
+		bullets.push_back(pBullet);
 	}
 }
 

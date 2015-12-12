@@ -14,6 +14,10 @@ const float windowYMin = -WINDOW_Y_SIZE;
 const int NEXT_LEVEL_ASTEROID_COUNT = 5;
 const int TIMER_RESET = 120; // Roughly 4 seconds
 
+const int SHOTGUN_LEFT_LIMIT = -5;
+const int SHOTGUN_RIGHT_LIMIT = 5;
+
+
 //********* For Bullet
 #define BULLET_SPEED 15
 // like a timer
@@ -38,9 +42,6 @@ const int TIMER_RESET = 120; // Roughly 4 seconds
 #define MAX_SHIP_SPEED 2.0
 #define deg2rad(value) ((3.1415 / 180) * (value))
 #define ABS(value) ((value > 0)? value : value * -1)
-
-//const int SHOTGUN_LEFT_LIMIT = -20;
-//const int SHOTGUN_RIGHT_LIMIT = 20;
 
 #endif
 
