@@ -2,6 +2,14 @@
 
 // Put your ship methods here
 
+Ship::Ship() : FlyingObject()
+{
+	angle = 90;
+	size = SHIP_SIZE;
+	location.setWrap(true);
+	flames = false;
+}
+
 void Ship::turnLeft()
 {
 	angle += ROTATE_AMOUNT;

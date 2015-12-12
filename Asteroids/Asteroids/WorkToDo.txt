@@ -84,9 +84,12 @@ Comments: Wrote an inbeded for loop with two iterators to go through each astero
 
 Assigned to:  CONNER
 Task: Sonic Boom
-Progress: 
-Level:
-Comments:
+Progress: DONE
+Level: easy?
+Comments: I made sonic boom a class inheriting from bullet, I 
+			don't know if that was the best choice with inheritance
+			but otherwise, I'd have to make a new sonicboom list.
+			Also, the sonicbooms don't wrap, do we want them to?
 
 
 Assigned to:  CONNER

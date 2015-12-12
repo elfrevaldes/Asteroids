@@ -9,8 +9,10 @@ class Ship : public FlyingObject
 private:
 	int angle;	
 	bool flames;
+
 public:
-	Ship() : FlyingObject() { angle = 90; size = SHIP_SIZE; location.setWrap(true); flames = false; }
+	Ship();
+
 	inline int getAngle() const { return angle; }
 	void turnLeft();
 	void turnRight();
@@ -19,6 +21,7 @@ public:
 	void draw();
 
 	void setFlames(bool nFlames) { flames = nFlames;  }
+
 
 	Ship & operator = (const Ship &rhs);
 };

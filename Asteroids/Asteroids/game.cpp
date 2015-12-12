@@ -117,6 +117,12 @@ void Game :: handleInput(const Interface & ui)
          Bullet* pBullet = new Bullet(*pShip); // can this be done in one line?
          bullets.push_back(pBullet); // push_back(&(new Bullet(*pShip)));
       }
+
+	  if (ui.isB())
+	  {
+		  Bullet* pBullet = new SonicBoom(*pShip); 
+		  bullets.push_back(pBullet); 
+	  }
    }
 }
 

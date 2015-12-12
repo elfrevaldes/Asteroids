@@ -30,8 +30,24 @@ public:
 	// are we changing the ship?
 	Bullet(const Ship& s);
 
-	void draw();
+	virtual void draw();
 	//void advance(); // defined in FlyingObject
+};
+
+// I thought that making this a bullet would be a good
+// way to keep everything the same and just add this
+// awesome new "bullet"
+class SonicBoom : public Bullet
+{
+private:
+
+public:
+	SonicBoom(const Ship &ship);
+
+	void draw();
+	
+	// Makes it a giant blast that kills everything
+	inline void kill() {};
 };
 
 #endif 

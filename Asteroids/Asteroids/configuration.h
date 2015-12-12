@@ -19,6 +19,9 @@ const int TIMER_RESET = 120; // Roughly 4 seconds
 // like a timer
 #define BULLET_LIFE 50
 
+//********* For Sonic Boom
+#define SONICBOOM_SPEED 5
+
 //********* For Rocks
 #define LARGE_ASTEROID_RADIUS 20
 #define MEDIUM_ASTEROID_RADIUS 12

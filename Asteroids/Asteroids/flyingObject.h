@@ -34,7 +34,7 @@ public:
 
 
 	void advance(); // all objects advance
-	inline void kill() { alive = false; std::cout << "alive = false.\n"; }
+	inline virtual void kill() { alive = false; std::cout << "alive = false.\n"; }
 
 	// Checks to see if the object is within the bounds of the screen
 	bool isOnScreen();

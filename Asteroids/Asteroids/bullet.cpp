@@ -48,4 +48,25 @@ void Bullet::draw()
 	}
 }
 
+SonicBoom::SonicBoom(const Ship &ship)
+{
+	alive = BULLET_LIFE;
+	size = ship.getSize();
 
+	setLocation(ship.getLocation());
+}
+
+void SonicBoom::draw()
+{
+	if (alive)
+	{
+		drawCircle(location, size);
+	}
+	if (alive > 0)
+	{
+		--alive;
+		size += SONICBOOM_SPEED;
+
+		std::cout << "sonic boom life: " << alive << std::endl;
+	}
+}
