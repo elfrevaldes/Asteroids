@@ -171,7 +171,10 @@ void Game::collisionCheck()
 	  asteroidIt2 != asteroids.end();
 		  asteroidIt2++)
 	  {
-		  objectBounce(asteroidIt, asteroidIt2);
+		  if (asteroidIt != asteroidIt2) // maybe try this?
+		  {
+			objectBounce(asteroidIt, asteroidIt2);
+		  }
 	  }    */
       
       // go through each bullet
