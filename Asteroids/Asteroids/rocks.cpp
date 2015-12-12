@@ -168,3 +168,5 @@ Velocity Asteroid::getUnitVector(Velocity object1, Velocity object2)
 	return unitVector;
 }
 
+
+

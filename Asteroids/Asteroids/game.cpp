@@ -166,12 +166,13 @@ void Game::collisionCheck()
 		 
       }
 
-	  for (list<Asteroid*>::iterator asteroidIt2 = asteroids.begin();
+	  ///////////////////////// FIGURE OUT BOUNCE!!!
+/*	  for (list<Asteroid*>::iterator asteroidIt2 = asteroids.begin();
 	  asteroidIt2 != asteroids.end();
 		  asteroidIt2++)
 	  {
 		  objectBounce(asteroidIt, asteroidIt2);
-	  }
+	  }    */
       
       // go through each bullet
       for (list<Bullet*>::iterator bulletIt = bullets.begin();
@@ -243,13 +244,16 @@ void Game::objectBounce(list<Asteroid*>::iterator asteroid1, list<Asteroid*>::it
 	/////////////////////////// ELFRE look here. This is whats giving me troubles
 	///////////////////////////   this is being called by Game::collisionCheck() line 171
 
-	//if (distance <  5 /*((*asteroid1)->getSize() + (*asteroid2)->getSize())*/)
-	//{
-	//	(*asteroid1)->getVelocity().invertVelocity();
-	//	(*asteroid2)->getVelocity().invertVelocity();
+	//if (distance <  ((*asteroid1)->getSize() + (*asteroid2)->getSize())
+	//	&& !(asteroid1 == asteroid2))
+	if (distance <=  ((*asteroid1)->getSize() + (*asteroid2)->getSize()) 
+		&&!(asteroid1 == asteroid2))
+	{
+		(*asteroid1)->getVelocity().invertVelocity();
+		(*asteroid2)->getVelocity().invertVelocity();
 
-	//	std::cout << "asteroid on asteroid collision\n";
-	//}
+		std::cout << "asteroid on asteroid collision\n";
+	}
 }
 
 

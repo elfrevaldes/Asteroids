@@ -28,7 +28,12 @@ public:
 
 	Velocity getUnitVector();
 	Velocity getUnitVector(Velocity object1, Velocity object2);
+
+	//friend bool operator==(const Asteroid& lhs, const Asteroid& rhs);
+	
 };
+//needs to be on the outside of the class becasue it has a lhs. 
+//bool operator==(const Asteroid& lhs, const Asteroid& rhs) { return (&lhs == &rhs); }
 
 /**********************************************************************
 *  CLASS SMALL ASTROID

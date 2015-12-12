@@ -1,8 +1,8 @@
 #ifndef CONFIGURATION_H
 #define CONFIGURATION_H
 
-#define WINDOW_X_SIZE 200
-#define WINDOW_Y_SIZE 200
+#define WINDOW_X_SIZE 400
+#define WINDOW_Y_SIZE 400
 #define INITIAL_ASTEROID_COUNT 1
 
 //********** For Game
@@ -15,14 +15,14 @@ const int NEXT_LEVEL_ASTEROID_COUNT = 5;
 const int TIMER_RESET = 120; // Roughly 4 seconds
 
 //********* For Bullet
-#define BULLET_SPEED 5
+#define BULLET_SPEED 15
 // like a timer
-#define BULLET_LIFE 40
+#define BULLET_LIFE 50
 
 //********* For Rocks
-#define LARGE_ASTEROID_RADIUS 16
-#define MEDIUM_ASTEROID_RADIUS 8
-#define SMALL_ASTEROID_RADIUS 6  //I think 6 fit better than 4
+#define LARGE_ASTEROID_RADIUS 20
+#define MEDIUM_ASTEROID_RADIUS 12
+#define SMALL_ASTEROID_RADIUS 8  //I think 6 fit better than 4
 
 #define LARGE_ASTEROID_SPIN 2
 #define MEDIUM_ASTEROID_SPIN 5
