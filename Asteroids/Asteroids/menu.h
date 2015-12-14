@@ -10,6 +10,7 @@ public:
 
 	void chooseMode();
 
+	void genericStartMenu();
 	void classicModeStartDisplay();
 	void bonusModeStartDisplay();
 	void survivalModeStartDisplay();

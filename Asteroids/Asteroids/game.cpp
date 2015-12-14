@@ -67,14 +67,14 @@ void Game :: advance()
         asteroidIt != asteroids.end();
         asteroidIt++)
    {
-	   //if (mode == 's')//if it's survival mode
-	   //{
-		  // (*asteroidIt)->survivalAsteroidAdvance(pShip->getLocation(), (*asteroidIt)->getLocation());
-	   //}
-	  // else
-	   //{
+	   if (mode == 's')//if it's survival mode
+	   {
+		   (*asteroidIt)->survivalAsteroidAdvance(pShip->getLocation(), (*asteroidIt)->getLocation());
+	   }
+	   else
+	   {
 		   (*asteroidIt)->advance();
-	   //}
+	   }
    }
    
    collisionCheck();
@@ -127,17 +127,20 @@ void Game :: handleInput(const Interface & ui)
          bullets.push_back(pBullet); // push_back(&(new Bullet(*pShip)));
       }
 
-	  if (ui.isB())
+	  if (mode = 'b')
 	  {
-		  Bullet* pBullet = new SonicBoom(*pShip); 
-		  bullets.push_back(pBullet); 
-	  }
+		  if (ui.isB())
+		  {
+			  Bullet* pBullet = new SonicBoom(*pShip);
+			  bullets.push_back(pBullet);
+		  }
 
-	  if (ui.isN())
-	  {
-		  shotgun();
-	  }
-   }
+		  if (ui.isN())
+		  {
+			  shotgun();
+		  }
+	  }//if (mode = 'b')
+   }//if (pShip->isAlive() && timeToPlay)
 
    if (preGame)
    {
@@ -166,17 +169,15 @@ void Game :: handleInput(const Interface & ui)
 		   mode = 'N';
 		   pShip->setAlive(true);
 		   pShip->setLocation(0, 0);
+		   pShip->setVelocity(0, 0);
 
 		   list<Asteroid*>::iterator asteroidIt = asteroids.begin();
 		   while (asteroidIt != asteroids.end())
 		   {
-			   //Asteroid* pAsteroid = *asteroidIt;	  /////////////////////////////////SYNTAX??
-			   //delete pAsteroid;   // first deallocate
 			   asteroidIt = asteroids.erase(asteroidIt);   // now remove from list and advance
-			   asteroidIt++; // advance
 		   }//while
 	   }//if (ui.isR())
-   }
+   }//if (postGame)
 }
 
 /*********************************************
@@ -449,11 +450,27 @@ void Game::shotgun()
  **************************************/
 void callBack(const Interface *pUI, void *p)
 {
-   Game *pGame = (Game *)p;
-   
-   pGame->advance();
-   pGame->handleInput(*pUI);
-   pGame->draw(*pUI);
+	/*Game *pGame;
+	if (pUI->isN())
+	{
+		Point topLeft(windowXMin, windowYMax);
+		Point bottomRight(windowXMax, windowYMin);
+		Game game(topLeft, bottomRight);
+		delete p;
+		pGame = (Game *)p;
+		pGame->advance();
+		pGame->handleInput(*pUI);
+		pGame->draw(*pUI);
+	}
+	else
+	{*/
+		Game *pGame = (Game *)p;
+
+		pGame->advance();
+		pGame->handleInput(*pUI);
+		pGame->draw(*pUI);
+	//}
+	
 }
 
 

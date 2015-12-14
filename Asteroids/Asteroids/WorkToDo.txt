@@ -41,7 +41,7 @@ Level:Easy
 Comments: very simple. added reward to asteroid class and a little to Game::draw();
 
 
-Assigned to:    ELFRE   :)
+Assigned to:    Logan - E
 Task: write the high score to a file
 Progress: 
 Level:
@@ -131,6 +131,14 @@ Level:
 Comments:
 
 
+Assigned to:  Logan - E
+Task: Pause button
+Progress: 
+Level:
+Comments:
+
+
+
 
 ///////////////////////////////////////////////////////////////////////
 ///  SURVIVAL MODE
@@ -151,7 +159,7 @@ Comments: Guna start working on it very soon
 
 Assigned to:    LOGAN
 Task: start menu
-Progress: DONE
+Progress:                         DONE
 Level: 
 Comments: 
 
@@ -159,15 +167,15 @@ Comments:
 
 Assigned to:    LOGAN
 Task: prompt to play again
-Progress: Almost done
+Progress:                         DONE
 Level: 
-Comments: Can someone look at the syntax for deleting the asteroids in game.cpp -> handleInput() -> if(postGame)
+Comments: 
 
 
 
 Assigned to:    LOGAN
 Task: option to switch modes
-Progress: DONE
+Progress:                         DONE
 Level:
 Comments:
 
@@ -175,7 +183,7 @@ Comments:
 
 Assigned to:    LOGAN
 Task: Survival mode intro
-Progress: 
+Progress:                         DONE
 Level:
 Comments:
 
@@ -183,7 +191,7 @@ Comments:
 
 Assigned to:    LOGAN
 Task: classic mode intro
-Progress: 
+Progress:                         DONE
 Level:
 Comments:
 

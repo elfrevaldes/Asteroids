@@ -83,7 +83,7 @@ public:
    static int getXMax() { return bottomRight.getX(); }
    static int getYMin() { return bottomRight.getY(); }
    static int getYMax() { return topLeft.getY(); }
-   
+   Ship * getShip() const { return pShip; }
 
 private:
    static Point topLeft;

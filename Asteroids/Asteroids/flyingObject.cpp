@@ -37,9 +37,28 @@ void FlyingObject::advance()
 	location.addY(velocity.getDy());
 }
 
+/**********************************************************************
+*
+**********************************************************************/
 void FlyingObject::survivalAsteroidAdvance(Point shipLocation, Point asteroidLocation)
 {
-	////////////// I need to work on this, but it's late and I'm tired
+	float asteroidGravity = .1;
+
+	float xDiff = shipLocation.getX() - asteroidLocation.getX();
+	float yDiff = shipLocation.getY() - asteroidLocation.getY();
+
+	float magnitude = sqrt(pow(xDiff, 2) + pow(yDiff, 2));
+
+
+
+	Velocity tempVel(xDiff, yDiff);
+
+
+	
+
+
+	velocity.addOntoDx(asteroidGravity * (xDiff/magnitude));
+	velocity.addOntoDy(asteroidGravity * (yDiff / magnitude));
 }
 
 /**********************************************************************

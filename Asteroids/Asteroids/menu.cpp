@@ -18,18 +18,14 @@ void Menu::chooseMode()
 
 }
 
-
 /******************************************************************
 
 ******************************************************************/
-void Menu::classicModeStartDisplay()
+void Menu::genericStartMenu()
 {
-	drawText(Point(-75, (windowYMax / 2) + 15), "Classic mode, good choice!");
-	drawText(Point(-75, windowYMax / 2), "         press r to play");
-
 	drawText(Point(-250, 100), "Press space to fire                                         .     .     .     .     .     .");
 	drawText(Point(-250, 85), " and arrows to move");
-	drawShip(Point(0, 100), 0, false); 
+	drawShip(Point(0, 100), 0, false);
 
 	drawText(Point(-250, 0), "Large asteroids will break                                   --->");
 	drawText(Point(-250, -15), " into 2 medium and 1 small");
@@ -44,6 +40,17 @@ void Menu::classicModeStartDisplay()
 	drawSmallAsteroid(Point(90, -100), 1);
 	drawSmallAsteroid(Point(120, -100), 1);
 
+}
+
+/******************************************************************
+
+******************************************************************/
+void Menu::classicModeStartDisplay()
+{
+	drawText(Point(-75, (windowYMax / 2) + 15), "Classic mode, good choice!");
+	drawText(Point(-75, windowYMax / 2), "         press r to play");
+
+	genericStartMenu();
 }
 
 
@@ -61,9 +68,25 @@ void Menu::bonusModeStartDisplay()
 ******************************************************************/
 void Menu::survivalModeStartDisplay()
 {
-	drawText(Point(-75, windowYMax / 2), "press r to play survival mode!");
+	drawText(Point(-75, (windowYMax / 2) + 15), "Surviuval Mode. Brave choice.");
+	drawText(Point(-75, windowYMax / 2), "       press r to play");
+
+	genericStartMenu();
+
+	drawText(Point(-250, -215), "Asteroids chase you.");
+	drawText(Point(-250, -230), "    Watch out.");
+
+	drawLine(Point(10, -200), Point(-30, -200), 1, 1, 1);
+	drawLine(Point(25, -215), Point(-50, -215), 1, 1, 1);
+	drawLine(Point(10, -230), Point(-30, -230), 1, 1, 1);
+
+	drawLargeAsteroid(Point(50, -215), 5);
+	drawShip(Point(150, -215), 0, true);
 }
 
+/******************************************************************
+
+******************************************************************/
 void Menu::gameOverMessage()
 {
 	drawText(Point(-100, 200), "Well shucks you lived through the crash, but now you're");
