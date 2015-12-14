@@ -71,7 +71,10 @@ public:
    int  isRight()     const { return isRightPress; };
    bool isSpace()     const { return isSpacePress; };
    bool isB()         const { return isBPress;     };
+   bool isC()         const { return isCPress; };
    bool isN()         const { return isNPress;     };
+   bool isR()		  const { return isRPress;     };
+   bool isS()		  const { return isSPress; };
 
    static void *p;                   // for client
    static void (*callBack)(const Interface *, void *);
@@ -89,7 +92,10 @@ private:
    static int  isRightPress;         //    "   right      "
    static bool isSpacePress;         //    "   space      "
    static bool isBPress;             //    "   B          "
+   static bool isCPress;             //    "   C          "
    static bool isNPress;             //    "   N          "
+   static bool isRPress;             //    "   R          "
+   static bool isSPress;             //    "   S          "
 };
 
 

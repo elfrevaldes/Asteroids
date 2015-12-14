@@ -37,6 +37,11 @@ void FlyingObject::advance()
 	location.addY(velocity.getDy());
 }
 
+void FlyingObject::survivalAsteroidAdvance(Point shipLocation, Point asteroidLocation)
+{
+	////////////// I need to work on this, but it's late and I'm tired
+}
+
 /**********************************************************************
 *
 **********************************************************************/

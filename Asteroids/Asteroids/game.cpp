@@ -67,7 +67,14 @@ void Game :: advance()
         asteroidIt != asteroids.end();
         asteroidIt++)
    {
-      (*asteroidIt)->advance();
+	   //if (mode == 's')//if it's survival mode
+	   //{
+		  // (*asteroidIt)->survivalAsteroidAdvance(pShip->getLocation(), (*asteroidIt)->getLocation());
+	   //}
+	  // else
+	   //{
+		   (*asteroidIt)->advance();
+	   //}
    }
    
    collisionCheck();
@@ -84,7 +91,9 @@ void Game :: advance()
  ***************************************/
 void Game :: handleInput(const Interface & ui)
 {
-   if (pShip->isAlive())
+
+
+   if (pShip->isAlive() && timeToPlay)
    {
       if (ui.isLeft())
       {
@@ -129,6 +138,45 @@ void Game :: handleInput(const Interface & ui)
 		  shotgun();
 	  }
    }
+
+   if (preGame)
+   {
+	   if (mode != 'N')
+	   {
+		   if (ui.isR())
+		   {
+			   preGame = false;
+			   timeToPlay = true;
+		   }
+	   }//if (mode != 'N')
+
+	   if (ui.isB()) { mode = 'b'; }
+	   if (ui.isS()) { mode = 's'; }
+	   if (ui.isC()) { mode = 'c'; }
+
+   }//if (preGame)
+
+   if (postGame)
+   {
+	   if (ui.isR())
+	   {
+		   preGame = true;
+		   timeToPlay = false;
+		   postGame = false;
+		   mode = 'N';
+		   pShip->setAlive(true);
+		   pShip->setLocation(0, 0);
+
+		   list<Asteroid*>::iterator asteroidIt = asteroids.begin();
+		   while (asteroidIt != asteroids.end())
+		   {
+			   //Asteroid* pAsteroid = *asteroidIt;	  /////////////////////////////////SYNTAX??
+			   //delete pAsteroid;   // first deallocate
+			   asteroidIt = asteroids.erase(asteroidIt);   // now remove from list and advance
+			   asteroidIt++; // advance
+		   }//while
+	   }//if (ui.isR())
+   }
 }
 
 /*********************************************
@@ -137,23 +185,60 @@ void Game :: handleInput(const Interface & ui)
  *********************************************/
 void Game :: draw(const Interface & ui)
 {
-	pShip->draw();
-	drawText(Point(windowXMin + 5, windowYMax - 20), "score:");
-	drawNumber(Point(windowXMin + 45, windowYMax - 10), getScore());
-   
-   for (list<Bullet*>::iterator bulletIt = bullets.begin();
-        bulletIt != bullets.end();
-        bulletIt++)
-   {
-      (*bulletIt)->draw();
-   }
-   
-   for (list<Asteroid*>::iterator asteroidIt = asteroids.begin();
-        asteroidIt != asteroids.end();
-        asteroidIt++)
-   {
-      (*asteroidIt)->draw();      
-   }
+
+	////////////////
+	// Menu related draws
+	////////////////
+	if (preGame)
+	{
+		if (mode == 'N')
+		{
+			menu.chooseMode();
+		}
+
+		switch (mode)
+		{
+		case 'b':
+			menu.bonusModeStartDisplay();
+			break;
+		case 'c':
+			menu.classicModeStartDisplay();
+			break;
+		case 's':
+			menu.survivalModeStartDisplay();
+			break;
+		default:
+			break;
+		}//switch
+		std::cout << "Mode = " << mode << std::endl;
+	}//if (preGame)
+	else if (timeToPlay)
+	{
+		pShip->draw();
+		drawText(Point(windowXMin + 5, windowYMax - 20), "score:");
+		drawNumber(Point(windowXMin + 45, windowYMax - 10), getScore());
+
+
+
+
+		for (list<Bullet*>::iterator bulletIt = bullets.begin();
+		bulletIt != bullets.end();
+			bulletIt++)
+		{
+			(*bulletIt)->draw();
+		}
+
+		for (list<Asteroid*>::iterator asteroidIt = asteroids.begin();
+		asteroidIt != asteroids.end();
+			asteroidIt++)
+		{
+			(*asteroidIt)->draw();
+		}
+	}// else if (timeToPlay)
+	else if (postGame)
+	{
+		menu.gameOverMessage();
+	}
 }
 
 /*********************************************
@@ -174,7 +259,8 @@ void Game::collisionCheck()
          pShip->kill();
          (*asteroidIt)->kill();
          (*asteroidIt)->breakApart(asteroids);
-		 
+		 timeToPlay = false;
+		 postGame = true;
       }
 
 	  ///////////////////////// FIGURE OUT BOUNCE!!!

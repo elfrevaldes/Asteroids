@@ -138,9 +138,9 @@ Comments:
 
 Assigned to:    LOGAN
 Task: Asteroids track the ship
-Progress: 
-Level:
-Comments:
+Progress: barely started
+Level:  urgent
+Comments: Guna start working on it very soon
 
 
 
@@ -151,22 +151,30 @@ Comments:
 
 Assigned to:    LOGAN
 Task: start menu
-Progress: 
-Level:
-Comments:
+Progress: DONE
+Level: 
+Comments: 
 
 
 
 Assigned to:    LOGAN
 Task: prompt to play again
-Progress: 
-Level:
-Comments:
+Progress: Almost done
+Level: 
+Comments: Can someone look at the syntax for deleting the asteroids in game.cpp -> handleInput() -> if(postGame)
 
 
 
 Assigned to:    LOGAN
 Task: option to switch modes
+Progress: DONE
+Level:
+Comments:
+
+
+
+Assigned to:    LOGAN
+Task: Survival mode intro
 Progress: 
 Level:
 Comments:
@@ -174,7 +182,7 @@ Comments:
 
 
 Assigned to:    LOGAN
-Task: Survival mode death message
+Task: classic mode intro
 Progress: 
 Level:
 Comments:
@@ -182,15 +190,7 @@ Comments:
 
 
 Assigned to:    LOGAN
-Task: classic mode death message
-Progress: 
-Level:
-Comments:
-
-
-
-Assigned to:    LOGAN
-Task: Bonus mode death message
+Task: Bonus mode intro
 Progress: 
 Level:
 Comments:

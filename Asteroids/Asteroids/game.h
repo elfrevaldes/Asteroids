@@ -19,6 +19,7 @@
 #include "uiDraw.h"
 #include "uiInteract.h"
 #include "point.h"
+#include "menu.h"
 
 #include "flyingObject.h"
 #include "ship.h"
@@ -47,6 +48,10 @@ public:
       
       pShip = new Ship;
 	  score = 0;
+	  preGame = true;
+	  postGame = false;
+	  timeToPlay = false;
+	  mode = 'N';//I was having trouble withh NULL in the if statements so I changed it to N
       
       for (int i = 0; i < INITIAL_ASTEROID_COUNT; i++)
       {
@@ -79,6 +84,7 @@ public:
    static int getYMin() { return bottomRight.getY(); }
    static int getYMax() { return topLeft.getY(); }
    
+
 private:
    static Point topLeft;
    static Point bottomRight;
@@ -102,6 +108,13 @@ private:
    static int level_timer;
    //int level_timer;
    int score;
+
+   //Menu object and variables related to it
+   Menu menu;
+   char mode;
+   bool preGame;
+   bool postGame;
+   bool timeToPlay;
 };
 
 

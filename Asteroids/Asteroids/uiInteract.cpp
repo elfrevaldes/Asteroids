@@ -181,8 +181,17 @@ void Interface::keyEvent(int key, bool fDown)
 	  case 'b':
 		  isBPress = fDown;
 		  break;
+	  case 'c':
+		  isCPress = fDown;
+		  break;
 	  case 'n':
 		  isNPress = fDown;
+		  break;
+	  case 'r':
+		  isRPress = fDown;
+		  break;
+	  case 's':
+		  isSPress = fDown;
 		  break;
    }
 }
@@ -204,7 +213,10 @@ void Interface::keyEvent()
       isRightPress++;
    isSpacePress = false;
    isBPress = false;
+   isCPress = false;
    isNPress = false;
+   isRPress = false;
+   isSPress = false;
 }
 
 
@@ -251,7 +263,10 @@ int          Interface::isLeftPress  = 0;
 int          Interface::isRightPress = 0;
 bool         Interface::isSpacePress = false;
 bool         Interface::isBPress     = false;
+bool         Interface::isCPress	 = false;
 bool         Interface::isNPress     = false;
+bool         Interface::isRPress	 = false;
+bool         Interface::isSPress	 = false;
 bool         Interface::initialized  = false;
 double       Interface::timePeriod   = 1.0 / 30; // default to 30 frames/second
 unsigned int Interface::nextTick     = 0;        // redraw now please
