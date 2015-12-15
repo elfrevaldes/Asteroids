@@ -546,7 +546,6 @@ void drawSacredBird(const Point & center, float radius)
    static float rotation = 0.0;   
    rotation += 5.0;
 
-   
    // begin drawing
    glBegin(GL_LINE_LOOP);
    glColor3f(1.0 /* red % */, 0.0 /* green % */, 0.0 /* blue % */);
@@ -568,6 +567,37 @@ void drawSacredBird(const Point & center, float radius)
    glColor3f(1.0, 1.0, 1.0); // reset to white
    glEnd();   
 }
+
+
+/************************************************************************
+* DRAW Sacred Bird
+* Draw a sacred bird on the screen
+*  INPUT point   The position of the sacred
+*        radius  The size of the bird
+*************************************************************************/
+void drawStar(const Point & center, float radius)
+{
+	// begin drawing
+	glBegin(GL_LINE_LOOP);
+	glColor3f(0.0 /* red % */, 0.0 /* green % */, 1.0 /* blue % */);
+
+
+	//loop around a circle the given number of times drawing a line from
+	//one point to the next
+	for (int i = 0; i < 5; i++)
+	{
+		Point temp(false /*check*/);
+		float radian = (float)i * (M_PI * 2.0) * 0.4;
+		temp.setX(center.getX() + (radius * cos(radian)));
+		temp.setY(center.getY() + (radius * sin(radian)));
+		glVertex2f(temp.getX(), temp.getY());
+	}
+
+	// complete drawing
+	glColor3f(1.0, 1.0, 1.0); // reset to white
+	glEnd();
+}
+
 
 /**********************************************************************
  * DRAW SMALL ASTEROID

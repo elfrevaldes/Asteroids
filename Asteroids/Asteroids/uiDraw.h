@@ -104,6 +104,12 @@ void drawDot(const Point & point);
 void drawSacredBird(const Point & center, float radius);
 
 /************************************************************************
+* DRAW Star
+* Draw  in the space on the screen
+*************************************************************************/
+void drawStar(const Point & center, float radius);
+
+/************************************************************************
  * DRAW Tough Bird
  * Draw a tough bird on the screen
  *************************************************************************/
