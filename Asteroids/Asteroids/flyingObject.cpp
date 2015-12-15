@@ -51,16 +51,16 @@ void FlyingObject::survivalAsteroidAdvance(Point &shipLocation, Point &asteroidL
 
 	Velocity tempVel(xDiff, yDiff);
 
-	if (velocity.getDx() < MAX_SURVIVAL_SPEED
-		|| velocity.getDy() < MAX_SURVIVAL_SPEED)
+	if (ABS(velocity.getDx()) < MAX_SURVIVAL_SPEED
+		|| ABS(velocity.getDy()) < MAX_SURVIVAL_SPEED)
 	{
 		velocity.addOntoDx(asteroidGravity * (xDiff / magnitude));
 		velocity.addOntoDy(asteroidGravity * (yDiff / magnitude));
 	}
 	else
 	{
-		velocity.setDx(0);
-		velocity.setDx(0);
+		velocity.addOntoDx(-asteroidGravity * (xDiff / magnitude));
+		velocity.addOntoDy(-asteroidGravity * (yDiff / magnitude));
 	}
 
 	location.addX(velocity.getDx());
