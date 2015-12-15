@@ -56,6 +56,9 @@ void Game :: advance()
 {
    pShip->advance();
    
+   // moving the starts on the screen
+   stars.advance(pShip->getVelocity());
+
    for (list<Bullet*>::iterator bulletIt = bullets.begin();
    bulletIt != bullets.end();
 	   bulletIt++)
@@ -92,45 +95,50 @@ void Game :: advance()
  ***************************************/
 void Game :: handleInput(const Interface & ui)
 {
-	if (ui.isP() && pause) { pause = false; }
-	else if (ui.isP() && !pause) { pause = true; }		
+	if (ui.isP() /*&& pause*/) 
+	{ 
+		pause = !pause; 
+	}
+	//else if (ui.isP() && !pause) { pause = true; }		
+	if (!pause)
+	{
+		if (pShip->isAlive() && timeToPlay)
+		{
+			if (ui.isLeft()) { pShip->turnLeft(); }
 
-   if (pShip->isAlive() && timeToPlay)
-   {
-      if (ui.isLeft()) { pShip->turnLeft(); }
-      
-      if (ui.isRight()) { pShip->turnRight(); }
-      
-      if (ui.isDown())
-      {
-		 pShip->setFlames(true);
-         pShip->thrust();
-      }
-	  else { pShip->setFlames(false); }
+			if (ui.isRight()) { pShip->turnRight(); }
 
-	  if (ui.isUp()) { pShip->slowDown(); }
+			// fix this mental bug
+			if (ui.isUp())
+			{
+				pShip->setFlames(true);
+				pShip->thrust();
+			}
+			else { pShip->setFlames(false); }
+
+			if (ui.isDown()) { pShip->slowDown(); }
 
 
-      if (ui.isSpace())
-      {
-         Bullet* pBullet = new Bullet(*pShip); // can this be done in one line?
-         bullets.push_back(pBullet); // push_back(&(new Bullet(*pShip)));
-      }
+			if (ui.isSpace())
+			{
+				Bullet* pBullet = new Bullet(*pShip); // can this be done in one line?
+				bullets.push_back(pBullet); // push_back(&(new Bullet(*pShip)));
+			}
 
-	  if (mode == 'b')
-	  {
-		  if (ui.isB())
-		  {
-			  Bullet* pBullet = new SonicBoom(*pShip);
-			  bullets.push_back(pBullet);
-		  }
+			if (mode == 'b')
+			{
+				if (ui.isB())
+				{
+					Bullet* pBullet = new SonicBoom(*pShip);
+					bullets.push_back(pBullet);
+				}
 
-		  if (ui.isN()) { shotgun(); }
+				if (ui.isN()) { shotgun(); }
 
-		  if (ui.isC()) { fourShot(); }
-	  }//if (mode == 'b')
-   }//if (pShip->isAlive() && timeToPlay)
-
+				if (ui.isC()) { fourShot(); }
+			}//if (mode == 'b')
+		}//if (pShip->isAlive() && timeToPlay)
+	}
    if (preGame)
    {
 	   if (mode != 'N')
@@ -168,11 +176,6 @@ void Game :: handleInput(const Interface & ui)
  *********************************************/
 void Game :: draw(const Interface & ui)
 {
-	if (pause)
-	{
-		drawText(Point(-15, windowYMax / 2), "PAUSE");
-	}
-
 	////////////////
 	// Menu related draws
 	////////////////
@@ -202,6 +205,9 @@ void Game :: draw(const Interface & ui)
 	else if (timeToPlay)
 	{
 		pShip->draw();
+
+		// Drawing beautiful starts on the screen
+		stars.draw();
 
 		//for score
 		drawText(Point(windowXMin + 5, windowYMax - 20), "score:");
@@ -497,15 +503,20 @@ void callBack(const Interface *pUI, void *p)
 	}
 	else
 	{*/
-		Game *pGame = (Game *)p;
-
-		if (!(pGame->getPause()))
+	Game *pGame = (Game *)p;
+	pGame->draw(*pUI);
+	pGame->handleInput(*pUI);
+	if (!(pGame->getPause()))
+	{
+		pGame->advance();
+	}
+	else
+	{
+		if (pGame->getPause())
 		{
-			pGame->advance();
+			drawText(Point(-15, windowYMax / 2), "PAUSE");
 		}
-		
-		pGame->handleInput(*pUI);
-		pGame->draw(*pUI);
+	}
 	//}
 	
 }

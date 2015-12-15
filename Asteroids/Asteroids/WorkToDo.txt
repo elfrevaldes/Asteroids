@@ -13,7 +13,9 @@ Level: Urgent
 Task: Create a configuration file to add all properties of the project. (config.h) 
 Comments: none for now.
 
-
+NOTES::
+WHEN GAMES RESET DOESN'T RESET THE SCORE!
+LIFE COUNTER SHOULD BE ON THE LEFT SIDE (IT GETS LOST ON THE RIGH SIDE)
 
 /*
 

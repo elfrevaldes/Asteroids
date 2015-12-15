@@ -20,7 +20,7 @@
 #include "uiInteract.h"
 #include "point.h"
 #include "menu.h"
-
+#include "star.h"
 #include "flyingObject.h"
 #include "ship.h"
 #include "rocks.h"
@@ -39,7 +39,7 @@ class Game
 {
 public:
    // create the game
-	Game(Point tl, Point br) 
+	Game(Point tl, Point br) : stars()
    {
       topLeft = tl;
       bottomRight = br;
@@ -99,7 +99,8 @@ private:
    
    list<Bullet*> bullets;
    list<Asteroid*> asteroids;
-   
+   Star stars;
+
    Point getRandomPoint() const;
    void collisionCheck();
    void cleanUpZombies();
