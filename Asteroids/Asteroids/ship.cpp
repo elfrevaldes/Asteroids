@@ -8,6 +8,7 @@ Ship::Ship() : FlyingObject()
 	size = SHIP_SIZE;
 	location.setWrap(true);
 	flames = false;
+	lives = 3;
 }
 
 void Ship::turnLeft()

@@ -51,6 +51,7 @@ public:
 	  preGame = true;
 	  postGame = false;
 	  timeToPlay = false;
+	  pause = false;
 	  mode = 'N';//I was having trouble withh NULL in the if statements so I changed it to N
       
       for (int i = 0; i < INITIAL_ASTEROID_COUNT; i++)
@@ -62,6 +63,7 @@ public:
    
    // handle user input
    void handleInput(const Interface & ui);
+   bool getPause() { return pause; }
    
    //handle score
    int getScore() { return score; }
@@ -78,6 +80,7 @@ public:
 
    // Shotgun has to be in game due to that weird problem
    void shotgun();
+   void fourShot(); 
    
    static int getXMin() { return topLeft.getX(); }
    static int getXMax() { return bottomRight.getX(); }
@@ -115,6 +118,7 @@ private:
    bool preGame;
    bool postGame;
    bool timeToPlay;
+   bool pause;
 };
 
 

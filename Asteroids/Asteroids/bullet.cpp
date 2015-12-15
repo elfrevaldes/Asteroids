@@ -47,10 +47,8 @@ Bullet::Bullet(Ship &ship, int orientation)
 	velocity = initialVelicity + ship.getVelocity();
 
 	//puts the location of the bullet at the tip of the ship
-	float x = ship.getLocation().getX() + 10 * cos(((ship.getAngle() + orientation)
-		* 3.14) / 180);
-	float y = ship.getLocation().getY() + 10 * sin(((ship.getAngle() + orientation)
-		* 3.14) / 180);
+	float x = ship.getLocation().getX() + 10 * cos(((ship.getAngle() + orientation) * 3.14) / 180);
+	float y = ship.getLocation().getY() + 10 * sin(((ship.getAngle() + orientation) * 3.14) / 180);
 	location = Point(x, y);
 
 	//wraps the bullet     // for testing purposes

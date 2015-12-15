@@ -9,11 +9,14 @@ class Ship : public FlyingObject
 private:
 	int angle;	
 	bool flames;
+	int lives;
 
 public:
 	Ship();
 
 	inline int getAngle() const { return angle; }
+	inline int getLives()const { return lives; }
+
 	void turnLeft();
 	void turnRight();
 	void thrust();
@@ -21,6 +24,7 @@ public:
 	void draw();
 
 	void setFlames(bool nFlames) { flames = nFlames;  }
+	void setLives(int nLives) { lives += nLives; }
 
 
 	Ship & operator = (const Ship &rhs);

@@ -91,34 +91,23 @@ void Game :: advance()
  ***************************************/
 void Game :: handleInput(const Interface & ui)
 {
-
+	if (ui.isP() && pause) { pause = false; }
+	else if (ui.isP() && !pause) { pause = true; }		
 
    if (pShip->isAlive() && timeToPlay)
    {
-      if (ui.isLeft())
-      {
-         pShip->turnLeft();
-      }
+      if (ui.isLeft()) { pShip->turnLeft(); }
       
-      if (ui.isRight())
-      {
-         pShip->turnRight();
-      }
+      if (ui.isRight()) { pShip->turnRight(); }
       
       if (ui.isDown())
       {
 		 pShip->setFlames(true);
          pShip->thrust();
       }
-	  else
-	  {
-		  pShip->setFlames(false);
-	  }
+	  else { pShip->setFlames(false); }
 
-	  if (ui.isUp())
-	  {
-		  pShip->slowDown();
-	  }
+	  if (ui.isUp()) { pShip->slowDown(); }
 
 
       if (ui.isSpace())
@@ -135,10 +124,9 @@ void Game :: handleInput(const Interface & ui)
 			  bullets.push_back(pBullet);
 		  }
 
-		  if (ui.isN())
-		  {
-			  shotgun();
-		  }
+		  if (ui.isN()) { shotgun(); }
+
+		  if (ui.isC()) { fourShot(); }
 	  }//if (mode == 'b')
    }//if (pShip->isAlive() && timeToPlay)
 
@@ -186,6 +174,10 @@ void Game :: handleInput(const Interface & ui)
  *********************************************/
 void Game :: draw(const Interface & ui)
 {
+	if (pause)
+	{
+		drawText(Point(-15, windowYMax / 2), "PAUSE");
+	}
 
 	////////////////
 	// Menu related draws
@@ -216,9 +208,13 @@ void Game :: draw(const Interface & ui)
 	else if (timeToPlay)
 	{
 		pShip->draw();
+
+		//for score
 		drawText(Point(windowXMin + 5, windowYMax - 20), "score:");
 		drawNumber(Point(windowXMin + 45, windowYMax - 10), getScore());
 
+		//draws lives
+		draw
 
 
 
@@ -441,6 +437,27 @@ void Game::shotgun()
 	}
 }
 
+/*********************************************
+* GAME :: FOUR SHOT
+* shoot bullets in the front, back, left, and right.
+*********************************************/
+void Game::fourShot()
+{
+	Bullet* pBullet = new Bullet(*pShip);
+	bullets.push_back(pBullet);
+
+	Bullet* pBullet2 = new Bullet(*pShip, /*pShip->getAngle() +*/ 90);
+	bullets.push_back(pBullet2);
+
+	Bullet* pBullet3 = new Bullet(*pShip, /*pShip->getAngle() +*/ 180);
+	bullets.push_back(pBullet3);
+
+	Bullet* pBullet4 = new Bullet(*pShip, /*pShip->getAngle() +*/ 270);
+	bullets.push_back(pBullet4);	
+}
+
+
+
 /*************************************
  * All the interesting work happens here, when
  * I get called back from OpenGL to draw a frame.
@@ -466,7 +483,11 @@ void callBack(const Interface *pUI, void *p)
 	{*/
 		Game *pGame = (Game *)p;
 
-		pGame->advance();
+		if (!(pGame->getPause()))
+		{
+			pGame->advance();
+		}
+		
 		pGame->handleInput(*pUI);
 		pGame->draw(*pUI);
 	//}

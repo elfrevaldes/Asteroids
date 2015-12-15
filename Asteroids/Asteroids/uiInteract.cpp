@@ -187,6 +187,9 @@ void Interface::keyEvent(int key, bool fDown)
 	  case 'n':
 		  isNPress = fDown;
 		  break;
+	  case 'p':
+		  isPPress = fDown;
+		  break;
 	  case 'r':
 		  isRPress = fDown;
 		  break;
@@ -215,6 +218,7 @@ void Interface::keyEvent()
    isBPress = false;
    isCPress = false;
    isNPress = false;
+   isPPress = false;
    isRPress = false;
    isSPress = false;
 }
@@ -265,6 +269,7 @@ bool         Interface::isSpacePress = false;
 bool         Interface::isBPress     = false;
 bool         Interface::isCPress	 = false;
 bool         Interface::isNPress     = false;
+bool         Interface::isPPress	 = false;
 bool         Interface::isRPress	 = false;
 bool         Interface::isSPress	 = false;
 bool         Interface::initialized  = false;

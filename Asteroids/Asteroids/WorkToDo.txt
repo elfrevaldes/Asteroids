@@ -131,9 +131,16 @@ Level:
 Comments:
 
 
-Assigned to:  Logan - E
+Assigned to:  Logan 
 Task: Pause button
-Progress: 
+Progress:                         DONE
+Level:
+Comments:
+
+
+Assigned to:  LOGAN
+Task: 4 shot
+Progress:                         DONE
 Level:
 Comments:
 
@@ -207,12 +214,3 @@ Comments:
 
 
 */
-if (pShip->getLocation().getX() > (*asteroidIt)->getLocation().getX())
-			   (*asteroidIt)->getLocation().addX(3);
-		   else
-			   (*asteroidIt)->getLocation().addX(-3);
-
-		   if (pShip->getLocation().getY() > (*asteroidIt)->getLocation().getY())
-			   (*asteroidIt)->getLocation().addY(3);
-		   else
-			   (*asteroidIt)->getLocation().addY(-3);
