@@ -17,6 +17,8 @@ const int TIMER_RESET = 120; // Roughly 4 seconds
 const int SHOTGUN_LEFT_LIMIT = -5;
 const int SHOTGUN_RIGHT_LIMIT = 5;
 
+//********* For Flying Object
+#define MAX_SURVIVAL_SPEED 3
 
 //********* For Bullet
 #define BULLET_SPEED 15

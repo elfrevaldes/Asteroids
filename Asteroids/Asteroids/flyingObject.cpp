@@ -9,7 +9,7 @@
 
 #include <iostream>
 #include "flyingObject.h"
-//#include "configuration.h"
+#include "configuration.h"
 
 
 
@@ -50,9 +50,19 @@ void FlyingObject::survivalAsteroidAdvance(Point &shipLocation, Point &asteroidL
 	float magnitude = sqrt(pow(xDiff, 2) + pow(yDiff, 2));
 
 	Velocity tempVel(xDiff, yDiff);
-	velocity.addOntoDx(asteroidGravity * (xDiff / magnitude));
-	velocity.addOntoDy(asteroidGravity * (yDiff / magnitude));	
-	
+
+	if (velocity.getDx() < MAX_SURVIVAL_SPEED
+		|| velocity.getDy() < MAX_SURVIVAL_SPEED)
+	{
+		velocity.addOntoDx(asteroidGravity * (xDiff / magnitude));
+		velocity.addOntoDy(asteroidGravity * (yDiff / magnitude));
+	}
+	else
+	{
+		velocity.setDx(0);
+		velocity.setDx(0);
+	}
+
 	location.addX(velocity.getDx());
 	location.addY(velocity.getDy());
 }
