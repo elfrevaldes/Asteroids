@@ -152,20 +152,13 @@ void Game :: handleInput(const Interface & ui)
    {
 	   if (ui.isR())
 	   {
+		   restartGame();
+		   mode = 'N';
 		   preGame = true;
 		   timeToPlay = false;
 		   postGame = false;
-		   mode = 'N';
 		   pShip->setAlive(true);
-		   pShip->setLocation(0, 0);
-		   pShip->setVelocity(0, 0);
-
-		   list<Asteroid*>::iterator asteroidIt = asteroids.begin();
-		   while (asteroidIt != asteroids.end())
-		   {
-			   asteroidIt = asteroids.erase(asteroidIt);   // now remove from list and advance
-		   }//while
-	   }//if (ui.isR())
+	   }
    }//if (postGame)
 }
 
@@ -215,7 +208,8 @@ void Game :: draw(const Interface & ui)
 		drawNumber(Point(windowXMin + 45, windowYMax - 10), getScore());
 
 		//draws lives
-		
+		drawText(Point(windowXMax - 55, windowYMax - 20), "lives:");
+		drawNumber(Point(windowXMax - 15, windowYMax - 10), pShip->getLives());
 
 
 
@@ -251,15 +245,23 @@ void Game::collisionCheck()
         asteroidIt++)
    {
       // check for collision with the ship
-      if (isCollision(*pShip, **asteroidIt))
-      {
-		 std::cout << "ship hit by asteroid.\n";
-         pShip->kill();
-         (*asteroidIt)->kill();
-         (*asteroidIt)->breakApart(asteroids);
-		 timeToPlay = false;
-		 postGame = true;
-      }
+	   if (isCollision(*pShip, **asteroidIt))
+	   {
+		   std::cout << "ship hit by asteroid.\n";
+		   (*asteroidIt)->kill();
+		   (*asteroidIt)->breakApart(asteroids);
+		   pShip->addToLives(-1);
+
+		   if (pShip->getLives() == 0)
+		   {
+			   timeToPlay = false;
+			   postGame = true;
+		   }
+		   else
+		   {
+			   restartGame();
+		   }
+	   }
 
 	  ///////////////////////// FIGURE OUT BOUNCE!!!
 /*	  for (list<Asteroid*>::iterator asteroidIt2 = asteroids.begin();
@@ -425,6 +427,19 @@ void Game::nextLevel()
 			}
 		}
 	}
+}
+
+void Game::restartGame()
+{
+	pShip->setLocation(0, 0);
+	pShip->setVelocity(0, 0);
+
+	list<Asteroid*>::iterator asteroidIt = asteroids.begin();
+	while (asteroidIt != asteroids.end())
+	{
+		(*asteroidIt)->kill();
+		asteroidIt++;
+	}//while
 }
 
 // Maybe make this just a line that goes, right now it slows

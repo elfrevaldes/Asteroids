@@ -78,6 +78,8 @@ public:
    // Checks if all the asteroids are destroyed
    void nextLevel();
 
+   void restartGame();
+
    // Shotgun has to be in game due to that weird problem
    void shotgun();
    void fourShot(); 
