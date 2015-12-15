@@ -40,25 +40,28 @@ void FlyingObject::advance()
 /**********************************************************************
 *
 **********************************************************************/
-void FlyingObject::survivalAsteroidAdvance(Point shipLocation, Point asteroidLocation)
+void FlyingObject::survivalAsteroidAdvance(Point &shipLocation, Point &asteroidLocation)
 {
-	float asteroidGravity = .1;
+/*	float asteroidGravity = .1;
 
 	float xDiff = shipLocation.getX() - asteroidLocation.getX();
 	float yDiff = shipLocation.getY() - asteroidLocation.getY();
 
 	float magnitude = sqrt(pow(xDiff, 2) + pow(yDiff, 2));
 
-
-
 	Velocity tempVel(xDiff, yDiff);
-
-
+	velocity.addOntoDx(asteroidGravity * (xDiff / magnitude));
+	velocity.addOntoDy(asteroidGravity * (yDiff / magnitude));*/	
 	
+	if (shipLocation.getX() > asteroidLocation.getX())
+		asteroidLocation.addX(3);
+	else
+		asteroidLocation.addX(-3);
 
-
-	velocity.addOntoDx(asteroidGravity * (xDiff/magnitude));
-	velocity.addOntoDy(asteroidGravity * (yDiff / magnitude));
+	if (shipLocation.getY() > asteroidLocation.getY())
+		asteroidLocation.addY(3);
+	else
+		asteroidLocation.addY(-3);	
 }
 
 /**********************************************************************

@@ -69,7 +69,17 @@ void Game :: advance()
    {
 	   if (mode == 's')//if it's survival mode
 	   {
-		   (*asteroidIt)->survivalAsteroidAdvance(pShip->getLocation(), (*asteroidIt)->getLocation());
+		   //(*asteroidIt)->survivalAsteroidAdvance(pShip->getLocation(), (*asteroidIt)->getLocation());
+
+		   if (pShip->getLocation().getX() > (*asteroidIt)->getLocation().getX())
+			   (*asteroidIt)->getLocation().addX(3);
+		   else
+			   (*asteroidIt)->getLocation().addX(-3);
+
+		   if (pShip->getLocation().getY() > (*asteroidIt)->getLocation().getY())
+			   (*asteroidIt)->getLocation().addY(3);
+		   else
+			   (*asteroidIt)->getLocation().addY(-3);
 	   }
 	   else
 	   {
