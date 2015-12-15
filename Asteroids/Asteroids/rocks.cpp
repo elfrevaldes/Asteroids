@@ -125,6 +125,23 @@ void SmallAsteroid::advance()
 	rotation += SMALL_ASTEROID_SPIN;
 }
 
+//*****************************************for survival mode
+void LargeAsteroid::survivalAdvance()
+{
+	rotation += LARGE_ASTEROID_SPIN;
+}
+
+void MediumAsteroid::survivalAdvance()
+{
+	rotation += MEDIUM_ASTEROID_SPIN;
+}
+
+void SmallAsteroid::survivalAdvance()
+{
+	rotation += SMALL_ASTEROID_SPIN;
+}
+
+
 /**********************************************************************
 * FUNCTION Get Unit Vector ()
 *	makes a unit vector with random direction from two random numbers.

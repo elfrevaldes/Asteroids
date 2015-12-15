@@ -153,9 +153,9 @@ Comments:
 
 Assigned to:    LOGAN
 Task: Asteroids track the ship
-Progress: barely started
+Progress: DONE
 Level:  urgent
-Comments: Guna start working on it very soon
+Comments: It's iffy but I think it's all good.
 
 
 

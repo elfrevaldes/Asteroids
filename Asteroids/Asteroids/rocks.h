@@ -22,6 +22,7 @@ public:
 	virtual void breakApart(std::list <Asteroid*> &asteroids) {}
 	virtual void draw();
 	virtual void advance() {}
+	virtual void survivalAdvance() {}
 
 	int getReward() { return reward; }
 	
@@ -55,6 +56,7 @@ public:
 	void breakApart();
 	void draw();
 	void advance();
+	void survivalAdvance();
 };
 
 /**********************************************************************
@@ -77,6 +79,7 @@ public:
 	void breakApart(std::list <Asteroid*> &asteroids);
 	void draw();
 	void advance();
+	void survivalAdvance();
 };
 
 /**********************************************************************
@@ -101,6 +104,7 @@ public:
 	void breakApart(std::list <Asteroid*> &asteroids);
 	void draw();
 	void advance();
+	void survivalAdvance();
 };
 
 #endif

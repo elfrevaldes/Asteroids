@@ -24,7 +24,7 @@ public:
 	void draw();
 
 	void setFlames(bool nFlames) { flames = nFlames;  }
-	void setLives(int nLives) { lives += nLives; }
+	void addToLives(int nLives) { lives += nLives; }
 
 
 	Ship & operator = (const Ship &rhs);

@@ -70,6 +70,7 @@ void Game :: advance()
 	   if (mode == 's')//if it's survival mode
 	   {
 		   (*asteroidIt)->survivalAsteroidAdvance(pShip->getLocation(), (*asteroidIt)->getLocation());
+		   (*asteroidIt)->survivalAdvance();
 	   }
 	   else
 	   {
@@ -214,7 +215,7 @@ void Game :: draw(const Interface & ui)
 		drawNumber(Point(windowXMin + 45, windowYMax - 10), getScore());
 
 		//draws lives
-		draw
+		
 
 
 
