@@ -67,31 +67,14 @@ void Game :: advance()
         asteroidIt != asteroids.end();
         asteroidIt++)
    {
-	   //if (mode == 's')//if it's survival mode
-	   //{
-		   //(*asteroidIt)->survivalAsteroidAdvance(pShip->getLocation(), (*asteroidIt)->getLocation());
-
-		   //if (pShip->getLocation().getX() > (*asteroidIt)->getLocation().getX())
-		   //{
-			   Velocity temp = (*asteroidIt)->getVelocity();
-			   temp.addOntoDx(.1);
-			   temp.addOntoDy(.1);
-			   (*asteroidIt)->setVelocity(temp);
-
-			   (*asteroidIt)->survivalAsteroidAdvance(pShip->getLocation(), (*asteroidIt)->getLocation());
-			   //}
-		   //else
-			  // (*asteroidIt)->getLocation().addX(-3);
-
-		   //if (pShip->getLocation().getY() > (*asteroidIt)->getLocation().getY())
-			  // (*asteroidIt)->getLocation().addY(3);
-		   //else
-			  // (*asteroidIt)->getLocation().addY(-3);
-	   //}
-	   //else
-	   //{
-		  // (*asteroidIt)->advance();
-	   //}
+	   if (mode == 's')//if it's survival mode
+	   {
+		   (*asteroidIt)->survivalAsteroidAdvance(pShip->getLocation(), (*asteroidIt)->getLocation());
+	   }
+	   else
+	   {
+		   (*asteroidIt)->advance();
+	   }
    }
    
    collisionCheck();
@@ -144,7 +127,7 @@ void Game :: handleInput(const Interface & ui)
          bullets.push_back(pBullet); // push_back(&(new Bullet(*pShip)));
       }
 
-	  if (mode = 'b')
+	  if (mode == 'b')
 	  {
 		  if (ui.isB())
 		  {
@@ -156,7 +139,7 @@ void Game :: handleInput(const Interface & ui)
 		  {
 			  shotgun();
 		  }
-	  }//if (mode = 'b')
+	  }//if (mode == 'b')
    }//if (pShip->isAlive() && timeToPlay)
 
    if (preGame)
