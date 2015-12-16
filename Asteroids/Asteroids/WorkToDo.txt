@@ -75,6 +75,17 @@ Comments: Wrote an inbeded for loop with two iterators to go through each astero
 			the problem is that the iterator will get to the same asteroid and then see that the distance is 
 			0 (becasue it's in the same place as itself).
 			How do I loop through to check all the distances and not check as asteroids distance with itself?
+			UPDATE:
+			In order to acomplish this we need to make sure that getRandom point does not give a point withing
+			the size of an asteroid so that asteroids don't overlap each other.
+			Then it is a matter of duplicating the code for collision of asteroid and bullet and then changing
+			to check for asteroids instead of bullet 
+			do
+				point = randomPoint()
+				// check all asteroids
+				IF (&asteroid != &hrsAsteroid)
+					distance = getDistance(asteriod.Point, rhs.Point) - radius
+ 			while(distance <= 0)				
 
 
 
